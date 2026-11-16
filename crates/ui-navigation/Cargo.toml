@@ -1,0 +1,21 @@
+[package]
+name = "ui-navigation"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Application-controlled native navigation compositions."
+readme = "README.md"
+keywords = ["gpui", "desktop", "navigation"]
+categories = ["gui"]
+[lints]
+workspace = true
+[dependencies]
+gpui-kit.workspace = true
+ui-components.workspace = true
+ui-icons.workspace = true
+ui-theme.workspace = true
+thiserror.workspace = true
+[dev-dependencies]
+gpui-kit = { workspace = true, features = ["test-support"] }

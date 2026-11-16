@@ -4329,6 +4329,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "navigation-app"
+version = "0.1.0"
+dependencies = [
+ "gpui-kit",
+ "ui-kit",
+]
+
+[[package]]
 name = "ndk-sys"
 version = "0.6.0+11769913"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -7355,6 +7363,7 @@ dependencies = [
  "ui-core",
  "ui-icons",
  "ui-layout",
+ "ui-navigation",
  "ui-theme",
 ]
 
@@ -7367,6 +7376,17 @@ dependencies = [
  "serde_json",
  "thiserror 2.0.21",
  "ui-components",
+]
+
+[[package]]
+name = "ui-navigation"
+version = "0.1.0"
+dependencies = [
+ "gpui-kit",
+ "thiserror 2.0.21",
+ "ui-components",
+ "ui-icons",
+ "ui-theme",
 ]
 
 [[package]]

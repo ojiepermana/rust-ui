@@ -1,237 +1,185 @@
 {
   "schema_version": 2,
   "kind": "agent_flow_run_state",
-  "revision": 3,
-  "run_id": "native-ui-foundation-20261116-verify",
-  "objective": "Verify the existing Native UI foundation against AC-1 through AC-8 without expanding implementation scope.",
+  "revision": 9,
+  "run_id": "native-navigation-20261116",
+  "objective": "Implement spec 0002 native navigation, all five patterns, facade consumer and Showcase, with honest verification.",
   "repository": "/Users/ojiepermana/Development/ojiepermana/gpui",
   "workspace": "/Users/ojiepermana/Development/ojiepermana/gpui",
   "runtime_kind": "codex",
   "runtime_evidence": {
-    "source": "Codex desktop session and callable collaboration tool schemas",
-    "timestamp": "2026-11-16T15:07:35.701899+07:00",
+    "source": "Codex desktop context and live collaboration schemas",
+    "timestamp": "2026-11-16T15:20:30.494164+07:00",
     "concurrency_limit": 4,
     "leader_counts": true
   },
   "target_selection": {
     "kind": "spec",
-    "path": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
-    "section": "Requirements AC-1 through AC-8",
-    "status_at_intake": "Accepted",
-    "excluded": [
-      "docs/specs/_root/0002-native-navigation/"
-    ]
+    "path": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0002-native-navigation/index.md",
+    "section": "Requirements AC-1 through AC-18",
+    "status_at_intake": "Proposed, design confirmed"
   },
-  "workflow_depth": "bounded verification of an accepted foundation",
+  "workflow_depth": "Beta",
   "execution_mode": "native_subagents",
   "decision_policy": {
     "default_mode": "auto",
     "workflow_overrides": {},
-    "source": "skill_default"
+    "source": "user --session autodecision"
   },
   "capability_assessment_ref": "team.md",
   "model_resolution_ref": "model-resolution.json",
   "agents": [
     {
-      "agent_id": "contracts",
-      "workflow_skill": "check verify",
-      "runtime_worker_id": "/root/contracts",
+      "agent_id": "navigation-crate",
+      "workflow_skill": null,
+      "runtime_worker_id": "/root/navigation_crate",
       "native_runtime_id_kind": "collaboration canonical task path",
       "runtime_kind": "codex",
-      "current_task_id": "contracts",
       "status": "COMPLETED",
       "context_provenance": "fresh",
-      "owned_paths": [],
-      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
-      "checkpoint": "checkpoints/contracts.md",
-      "next_action": null,
-      "context_evidence": "spawn_agent invoked with fork_turns none; tool returned canonical child path. No mapping to app chat ID is claimed."
+      "context_evidence": "spawn_agent fork_turns none accepted; requested gpt-6.1-sol/high, actual model metadata unavailable",
+      "owned_paths": [
+        "/tmp/gpui-native-navigation/crates/ui-navigation"
+      ],
+      "current_task_id": "navigation-crate",
+      "continuations": [
+        {
+          "runtime_worker_id": "/root/navigation_crate",
+          "context_provenance": "resumed",
+          "purpose": "Raw coalesced pointer Escape restoration fix",
+          "result": "18 crate tests passed, writer stopped",
+          "artifact": "/tmp/gpui-navigation-focus-final.tar"
+        }
+      ]
     },
     {
-      "agent_id": "showcase",
-      "workflow_skill": "check verify",
-      "runtime_worker_id": "/root/showcase",
+      "agent_id": "navigation-contract-check",
+      "runtime_worker_id": "/root/navigation_contract_check",
       "native_runtime_id_kind": "collaboration canonical task path",
       "runtime_kind": "codex",
-      "current_task_id": "showcase",
+      "workflow_skill": "check verify",
+      "current_task_id": "navigation-contract-check",
       "status": "COMPLETED",
       "context_provenance": "fresh",
-      "owned_paths": [],
-      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
-      "checkpoint": "checkpoints/showcase.md",
-      "next_action": null,
-      "context_evidence": "spawn_agent invoked with fork_turns none; tool returned canonical child path. No mapping to app chat ID is claimed."
-    },
-    {
-      "agent_id": "commands",
-      "workflow_skill": "check verify",
-      "runtime_worker_id": null,
-      "native_runtime_id_kind": null,
-      "runtime_kind": "codex",
-      "current_task_id": "commands",
-      "status": "COMPLETED",
-      "context_provenance": "inline",
-      "owned_paths": [],
-      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
-      "checkpoint": "checkpoints/commands.md",
-      "next_action": null
-    },
-    {
-      "agent_id": "native",
-      "workflow_skill": "check verify",
-      "runtime_worker_id": null,
-      "native_runtime_id_kind": null,
-      "runtime_kind": "codex",
-      "current_task_id": "native",
-      "status": "COMPLETED",
-      "context_provenance": "inline",
-      "owned_paths": [],
-      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
-      "checkpoint": "checkpoints/native.md",
-      "next_action": null
+      "context_evidence": "spawn_agent fork_turns none accepted, no actual model metadata",
+      "owned_paths": []
     }
   ],
   "tasks": [
     {
-      "task_id": "contracts",
-      "feature_id": "0001-native-ui-foundation",
-      "workflow_skill": "check verify",
-      "delegated_work": "read only evidence helper",
-      "assigned_agent": "contracts",
+      "task_id": "navigation-crate",
+      "feature_id": "0002-native-navigation",
+      "workflow_skill": null,
+      "adaptation": "native_task_adaptation",
+      "delegated_work": "Bounded crate implementation against approved spec",
+      "assigned_agent": "navigation-crate",
       "runtime_kind": "codex",
-      "complexity": "MEDIUM",
+      "complexity": "HIGH",
       "execution_placement": "native_worker",
-      "specification": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
+      "specification": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0002-native-navigation/index.md",
       "acceptance_criteria": [
         "AC-1",
         "AC-2",
-        "AC-3",
-        "AC-4",
-        "AC-5"
-      ],
-      "dependencies": [],
-      "owned_paths": [],
-      "decision_mode": "auto",
-      "decision_policy_source": "skill_default",
-      "status": "COMPLETED",
-      "model": {
-        "source": "routine",
-        "family": "terra",
-        "requested": {
-          "selection": "gpt-6.1-terra",
-          "effort": "medium",
-          "via": "spawn option from agent-flow routing"
-        },
-        "configured": null,
-        "observed": null,
-        "evidence": [
-          "Live collaboration.spawn_agent schema lists gpt-6.1-terra and medium effort",
-          "spawn_agent accepted explicit selection and medium effort, returning /root/contracts; no observed model execution metadata was supplied"
-        ],
-        "rationale": "Bounded verification evidence collection",
-        "substitution": null
-      },
-      "checkpoint": "checkpoints/contracts.md",
-      "next_action": null
-    },
-    {
-      "task_id": "showcase",
-      "feature_id": "0001-native-ui-foundation",
-      "workflow_skill": "check verify",
-      "delegated_work": "read only evidence helper",
-      "assigned_agent": "showcase",
-      "runtime_kind": "codex",
-      "complexity": "MEDIUM",
-      "execution_placement": "native_worker",
-      "specification": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
-      "acceptance_criteria": [
-        "AC-6",
-        "AC-7"
-      ],
-      "dependencies": [],
-      "owned_paths": [],
-      "decision_mode": "auto",
-      "decision_policy_source": "skill_default",
-      "status": "COMPLETED",
-      "model": {
-        "source": "routine",
-        "family": "terra",
-        "requested": {
-          "selection": "gpt-6.1-terra",
-          "effort": "medium",
-          "via": "spawn option from agent-flow routing"
-        },
-        "configured": null,
-        "observed": null,
-        "evidence": [
-          "Live collaboration.spawn_agent schema lists gpt-6.1-terra and medium effort",
-          "spawn_agent accepted explicit selection and medium effort, returning /root/showcase; no observed model execution metadata was supplied"
-        ],
-        "rationale": "Bounded verification evidence collection",
-        "substitution": null
-      },
-      "checkpoint": "checkpoints/showcase.md",
-      "next_action": null
-    },
-    {
-      "task_id": "commands",
-      "feature_id": "0001-native-ui-foundation",
-      "workflow_skill": "check verify",
-      "delegated_work": null,
-      "assigned_agent": "commands",
-      "runtime_kind": "codex",
-      "complexity": "MEDIUM",
-      "execution_placement": "inline",
-      "specification": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
-      "acceptance_criteria": [
-        "AC-1",
-        "AC-2",
-        "AC-7",
-        "AC-8"
-      ],
-      "dependencies": [],
-      "owned_paths": [],
-      "decision_mode": "auto",
-      "decision_policy_source": "skill_default",
-      "status": "COMPLETED",
-      "model": {
-        "source": null,
-        "family": null,
-        "requested": {
-          "selection": null,
-          "effort": null,
-          "via": "session"
-        },
-        "configured": null,
-        "observed": null,
-        "evidence": [],
-        "rationale": "Leader inline execution",
-        "substitution": null
-      },
-      "checkpoint": "checkpoints/commands.md",
-      "next_action": null
-    },
-    {
-      "task_id": "native",
-      "feature_id": "0001-native-ui-foundation",
-      "workflow_skill": "check verify",
-      "delegated_work": null,
-      "assigned_agent": "native",
-      "runtime_kind": "codex",
-      "complexity": "MEDIUM",
-      "execution_placement": "inline",
-      "specification": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
-      "acceptance_criteria": [
         "AC-3",
         "AC-4",
         "AC-5",
         "AC-6",
-        "AC-8"
+        "AC-7",
+        "AC-8",
+        "AC-9",
+        "AC-10",
+        "AC-11",
+        "AC-12",
+        "AC-13",
+        "AC-14",
+        "AC-15"
       ],
+      "dependencies": [],
+      "owned_paths": [
+        "/tmp/gpui-native-navigation/crates/ui-navigation"
+      ],
+      "decision_mode": "auto",
+      "decision_policy_source": "user --session autodecision",
+      "status": "COMPLETED",
+      "model": {
+        "source": "engineering",
+        "family": "sol",
+        "requested": {
+          "selection": "gpt-6.1-sol",
+          "effort": "high",
+          "via": "collaboration.spawn_agent"
+        },
+        "configured": null,
+        "observed": null,
+        "evidence": [
+          "Live spawn schema advertises this selector and high effort"
+        ],
+        "rationale": "Substantial implementation against approved shared contract",
+        "substitution": null
+      },
+      "worktree": "/tmp/gpui-native-navigation",
+      "base_commit": "1287fc9",
+      "checkpoint": "checkpoints/navigation-crate.md",
+      "artifact": {
+        "artifact": "/tmp/gpui-navigation-focus-final.tar",
+        "sha256": "76c9506aaab22f19b4b534d665b0da00d643f6bdca7b77a7df1f57723462ec58",
+        "leader_followup": "Compact text badge uses rail inner width; Showcase compact empty slot uses a short label. Final sources validated and integrated into main without modifying vendor."
+      }
+    },
+    {
+      "task_id": "navigation-contract-check",
+      "feature_id": "0002-native-navigation",
+      "workflow_skill": "check verify",
+      "delegated_work": "read only conformance helper, static inspection and test gap identification",
+      "assigned_agent": "navigation-contract-check",
+      "runtime_kind": "codex",
+      "complexity": "HIGH",
+      "execution_placement": "native_worker",
+      "specification": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0002-native-navigation/index.md",
       "dependencies": [],
       "owned_paths": [],
       "decision_mode": "auto",
-      "decision_policy_source": "skill_default",
+      "decision_policy_source": "user --session autodecision",
+      "status": "COMPLETED",
+      "model": {
+        "source": "engineering",
+        "family": "sol",
+        "requested": {
+          "selection": "gpt-6.1-sol",
+          "effort": "medium",
+          "via": "collaboration.spawn_agent"
+        },
+        "configured": null,
+        "observed": null,
+        "evidence": [
+          "Live schema offers selector and medium effort"
+        ],
+        "rationale": "Complex spec conformance, read only evidence helper",
+        "substitution": null
+      },
+      "checkpoint": "checkpoints/navigation-contract-check.md"
+    },
+    {
+      "task_id": "integration",
+      "feature_id": "0002-native-navigation",
+      "workflow_skill": "develop",
+      "assigned_agent": "leader",
+      "runtime_kind": "codex",
+      "execution_placement": "inline",
+      "dependencies": [
+        "navigation-crate"
+      ],
+      "owned_paths": [
+        "apps/showcase",
+        "examples/navigation-app",
+        "crates/ui-kit",
+        "Cargo.toml",
+        "Cargo.lock",
+        "scripts/validate-dependencies.py",
+        "docs/getting-started/navigation.md"
+      ],
+      "decision_mode": "auto",
+      "decision_policy_source": "user --session autodecision",
       "status": "COMPLETED",
       "model": {
         "source": null,
@@ -243,138 +191,307 @@
         },
         "configured": null,
         "observed": null,
-        "evidence": [],
-        "rationale": "Leader inline execution",
-        "substitution": null
+        "evidence": [
+          "Actual session settings unchanged; exact release/effort not exposed"
+        ]
+      }
+    },
+    {
+      "task_id": "test",
+      "feature_id": "0002-native-navigation",
+      "workflow_skill": "test",
+      "assigned_agent": "leader",
+      "runtime_kind": "codex",
+      "execution_placement": "inline",
+      "dependencies": [
+        "integration"
+      ],
+      "owned_paths": [
+        "apps/showcase/src/tests.rs",
+        "crates/ui-kit/tests/public_api.rs",
+        "examples/navigation-app/src/main.rs",
+        "test-preferences.json"
+      ],
+      "decision_mode": "auto",
+      "decision_policy_source": "user --session autodecision",
+      "status": "COMPLETED",
+      "model": {
+        "source": null,
+        "family": null,
+        "requested": {
+          "selection": null,
+          "effort": null,
+          "via": "session"
+        },
+        "configured": null,
+        "observed": null,
+        "evidence": [
+          "Actual session settings unchanged; exact release/effort not exposed"
+        ]
+      }
+    },
+    {
+      "task_id": "native",
+      "feature_id": "0002-native-navigation",
+      "workflow_skill": "check verify",
+      "assigned_agent": "leader",
+      "runtime_kind": "codex",
+      "execution_placement": "inline",
+      "dependencies": [
+        "integration"
+      ],
+      "owned_paths": [],
+      "decision_mode": "auto",
+      "decision_policy_source": "user --session autodecision",
+      "status": "BLOCKED",
+      "model": {
+        "source": null,
+        "family": null,
+        "requested": {
+          "selection": null,
+          "effort": null,
+          "via": "session"
+        },
+        "configured": null,
+        "observed": null,
+        "evidence": [
+          "Actual session settings unchanged; exact release/effort not exposed"
+        ]
       },
-      "checkpoint": "checkpoints/native.md",
-      "next_action": null
+      "checkpoint": "checkpoints/navigation.md"
+    },
+    {
+      "task_id": "close",
+      "feature_id": "0002-native-navigation",
+      "workflow_skill": "scope + sync",
+      "assigned_agent": "leader",
+      "runtime_kind": "codex",
+      "execution_placement": "inline",
+      "dependencies": [
+        "test",
+        "native"
+      ],
+      "owned_paths": [
+        "AGENTS.md",
+        "docs/scope",
+        "docs/agent-team"
+      ],
+      "decision_mode": "auto",
+      "decision_policy_source": "user --session autodecision",
+      "status": "COMPLETED",
+      "model": {
+        "source": null,
+        "family": null,
+        "requested": {
+          "selection": null,
+          "effort": null,
+          "via": "session"
+        },
+        "configured": null,
+        "observed": null,
+        "evidence": [
+          "Actual session settings unchanged; exact release/effort not exposed"
+        ]
+      }
     }
   ],
   "sessions": [],
   "decisions": [
     {
-      "id": "D1",
-      "workflow": "agent-flow",
-      "topic": "execution mode",
-      "choice": "Native Subagents for verification",
+      "id": "N1",
+      "workflow": "scope",
+      "topic": "workflow depth",
+      "choice": "Beta",
+      "reason": "Reusable native library needs runtime verification and regression tests; no publication requested.",
       "mode": "auto",
-      "source": "Explicit user answer to mode clarification",
-      "reason": "User selected verification of existing foundation."
+      "source": "user autodecision"
     }
   ],
+  "status": "BLOCKED",
+  "updated_at": "2026-11-16T15:58:36.646650+07:00",
+  "prior_run_ref": "runs/native-ui-foundation-20261116-verify.json",
+  "integration_checkpoint": {
+    "artifact": "/tmp/gpui-navigation-focus-final.tar",
+    "sha256": "76c9506aaab22f19b4b534d665b0da00d643f6bdca7b77a7df1f57723462ec58",
+    "leader_followup": "Compact text badge uses rail inner width; Showcase compact empty slot uses a short label. Final sources validated and integrated into main without modifying vendor."
+  },
+  "isolated_validation": {
+    "checkout": "/tmp/gpui-navigation-integration",
+    "base": "1287fc9",
+    "excluded": [
+      "vendor/gpui-base external selection changes",
+      "graphify-out pre-existing changes"
+    ],
+    "reason": "Other task changed vendor and may share Showcase bundle during execution; preserve unrelated work and validate only navigation target"
+  },
+  "verification_verdict": "Implementation and local workspace gates passed; full native accessibility acceptance blocked by pinned macOS Button selected/expanded bridge. Other unexecuted checklist cases remain explicit.",
+  "checkout_head": "430807287b0a98230ae687d911e21af8bf899aff",
+  "checks": {
+    "checkout": "/Users/ojiepermana/Development/ojiepermana/gpui",
+    "results": [
+      {
+        "command": "cargo fmt --all --check",
+        "exit_code": 0,
+        "seconds": 0.33,
+        "log": "/tmp/gpui-navigation-validation/checkout-01-fmt.log"
+      },
+      {
+        "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+        "exit_code": 0,
+        "seconds": 0.52,
+        "log": "/tmp/gpui-navigation-validation/checkout-02-clippy.log"
+      },
+      {
+        "command": "cargo test --workspace --locked",
+        "exit_code": 0,
+        "seconds": 6.43,
+        "log": "/tmp/gpui-navigation-validation/checkout-03-test.log"
+      },
+      {
+        "command": "cargo build --workspace --locked",
+        "exit_code": 0,
+        "seconds": 0.37,
+        "log": "/tmp/gpui-navigation-validation/checkout-04-build.log"
+      },
+      {
+        "command": "cargo doc --workspace --no-deps --locked",
+        "exit_code": 0,
+        "seconds": 39.15,
+        "log": "/tmp/gpui-navigation-validation/checkout-05-doc.log"
+      },
+      {
+        "command": "python3 scripts/validate-dependencies.py",
+        "exit_code": 0,
+        "seconds": 0.87,
+        "log": "/tmp/gpui-navigation-validation/checkout-06-dependencies.log"
+      }
+    ],
+    "test_and_doctest_cases": 45,
+    "isolated_results": [
+      {
+        "command": "cargo fmt --all --check",
+        "exit_code": 0,
+        "seconds": 0.33,
+        "log": "/tmp/gpui-navigation-validation/final-01-fmt.log"
+      },
+      {
+        "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+        "exit_code": 0,
+        "seconds": 1.21,
+        "log": "/tmp/gpui-navigation-validation/final-02-clippy.log"
+      },
+      {
+        "command": "cargo test --workspace --locked",
+        "exit_code": 0,
+        "seconds": 11.54,
+        "log": "/tmp/gpui-navigation-validation/final-03-test.log"
+      },
+      {
+        "command": "cargo build --workspace --locked",
+        "exit_code": 0,
+        "seconds": 2.98,
+        "log": "/tmp/gpui-navigation-validation/final-04-build.log"
+      },
+      {
+        "command": "cargo doc --workspace --no-deps --locked",
+        "exit_code": 0,
+        "seconds": 2.34,
+        "log": "/tmp/gpui-navigation-validation/final-05-doc.log"
+      },
+      {
+        "command": "python3 scripts/validate-dependencies.py",
+        "exit_code": 0,
+        "seconds": 1.04,
+        "log": "/tmp/gpui-navigation-validation/final-06-dependencies.log"
+      }
+    ],
+    "cargo_run": "Started cargo run -p showcase --locked and reached Running target/debug/showcase; smoke process stopped by Leader with Ctrl-C (130), separate native bundle inspected."
+  },
+  "native_evidence": {
+    "bundle": "/tmp/gpui-navigation-validation/NavigationVerification.app",
+    "executable_sha256": "371a1cd086a88692b698f8a0593c990bd4037e1d8c9293939da48605fd6355df",
+    "checkout": "/Users/ojiepermana/Development/ojiepermana/gpui",
+    "base": "1287fc9",
+    "vendor": "existing selection compatibility patch from external commit 4308072, plus original divider patch; unchanged by navigation",
+    "includes": "final compact empty slot and all navigation changes",
+    "previous_baseline_native_sha256": "ddc263755b99d835cd0f4e417b879ad672866d0bf48d53265d936e610bbf7375",
+    "checkout_head": "430807287b0a98230ae687d911e21af8bf899aff",
+    "ref": "checkpoints/navigation.md"
+  },
   "outstanding": [
     {
-      "criterion": "AC-8",
-      "status": "not run",
-      "detail": "Windows, Linux, Intel macOS, physical multi-display DPI, IME and screen reader behavior remain unverified. Accessibility labels observed are not certification."
-    }
-  ],
-  "updated_at": "2026-11-16T15:15:20.820177+07:00",
-  "status": "COMPLETED",
-  "verification_verdict": "PASS: declared local macOS foundation baseline, including live OS appearance changes; other platform and accessibility limits remain explicit",
-  "skipped_stages": [
-    {
-      "stage": "scope",
-      "reason": "Verification only, no scope artifact exists and no product scope change was requested."
+      "criterion": "AC-12, AC-14",
+      "status": "blocked",
+      "detail": "Pinned macOS AccessKit bridge restricts selected to item-like roles and does not map expanded for these Buttons. GPUI metadata is asserted in headless tests; actual native names/roles/disabled are observed. No vendor/runtime change authorized by spec."
     },
     {
+      "criterion": "AC-18",
+      "status": "not run",
+      "detail": "Windows/Linux, VoiceOver, physical display/DPI and full native density/rem/reduced-motion matrix. Remaining unchecked verify.md steps are not claimed passed."
+    }
+  ],
+  "skipped_stages": [
+    {
       "stage": "audit",
-      "reason": "Curated AGENTS.md already exists; no context bootstrap requested."
+      "reason": "Curated AGENTS.md already governs workspace."
     },
     {
       "stage": "architect",
-      "reason": "Accepted spec remains in force; no new design decision owed."
-    },
-    {
-      "stage": "develop",
-      "reason": "Existing foundation inspected, no source edits needed."
-    },
-    {
-      "stage": "test",
-      "reason": "Existing required suite executed; no test writing requested."
+      "reason": "Approved design reused; no load-bearing design changed. Native bridge limitation reported under existing spec rule."
     },
     {
       "stage": "check review",
-      "reason": "Verification selected, no independent review requested or claimed."
+      "reason": "Beta tier does not require independent review; conformance helper is not an independent review."
     },
     {
       "stage": "document",
-      "reason": "No PR or release prose change requested."
-    },
-    {
-      "stage": "sync",
-      "reason": "No application code or manifest changed in this run; coordination records only."
-    },
-    {
-      "stage": "debug",
-      "reason": "No observed functional failure required diagnosis."
+      "reason": "No release/PR prose requested or needed for Beta. Feature guide delivered through develop."
     }
   ],
-  "verification_results": [
-    {
-      "criterion": "AC-1",
-      "status": "passed",
-      "observed_result": "Dependency validator confirms ten packages, six reusable libraries, versioned local paths, allowed boundaries and no cycles.",
-      "evidence_ref": "checkpoints/commands.md"
-    },
-    {
-      "criterion": "AC-2",
-      "status": "passed",
-      "observed_result": "Pinned gpui-kit 0.9.1, one GPUI 0.3.12 runtime, original vendor source integrity and declared patch verified.",
-      "evidence_ref": "checkpoints/commands.md"
-    },
-    {
-      "criterion": "AC-3",
-      "status": "passed",
-      "observed_result": "Prior explicit light/dark/System selection, named registration, invalid input rejection and token refresh passed. Follow-up observed live macOS Dark to Light to Dark changes automatically refreshing the existing System-mode Showcase window and semantic tokens, without app restart or app theme commands. Original OS Dark setting restored.",
-      "evidence_ref": "checkpoints/native.md"
-    },
-    {
-      "criterion": "AC-4",
-      "status": "passed",
-      "observed_result": "Native SVGs render in gallery and Button; namespaced registry validation covered by passing tests.",
-      "evidence_ref": "checkpoints/native.md"
-    },
-    {
-      "criterion": "AC-5",
-      "status": "passed",
-      "observed_result": "Seven composition previews observed, controlled selection and tabs exercised, split and inspector divider moved natively.",
-      "evidence_ref": "checkpoints/native.md"
-    },
-    {
-      "criterion": "AC-6",
-      "status": "passed",
-      "observed_result": "All seven destination content observed, live Playground and icon controls exercised including OS copy/paste.",
-      "evidence_ref": "checkpoints/native.md"
-    },
-    {
-      "criterion": "AC-7",
-      "status": "passed",
-      "observed_result": "Workspace build compiles all three consumers, 22 test/doctest cases pass, docs build and release checker pass.",
-      "evidence_ref": "checkpoints/commands.md"
-    },
-    {
-      "criterion": "AC-8",
-      "status": "passed",
-      "observed_result": "All required commands passed and cargo run started. Native bundle inspected has identical SHA256 to current debug executable. Platform/accessibility boundaries reported separately.",
-      "evidence_ref": "checkpoints/commands.md"
-    }
-  ],
-  "followups": [
-    {
-      "id": "live-macos-appearance",
-      "requested_by": "User: Verify the live OS appearance changes on macOS and update the foundation verification report.",
-      "executed_at": "2026-11-16T15:15:20.820177+07:00",
-      "execution_placement": "inline",
-      "status": "COMPLETED",
-      "criterion": "AC-3",
-      "result": "passed",
-      "evidence_ref": "checkpoints/native.md#live-macos-appearance-follow-up-2026-11-16",
-      "git_head": "13c021c2f817d64e1a6e7b962e46ce4bfecc33d4",
-      "executable_sha256": "95ed2edae7263286c84c4d5fe80ef11310d251ce27132efc094330319d1dfc73",
-      "restoration": "Original macOS Dark appearance restored; Showcase Overview, System selected; Settings General",
-      "automated_checks": "Not repeated for documentation-only update; prior results retained"
-    }
-  ]
+  "source_fingerprints": {
+    "crates/ui-navigation/src/lib.rs": "3a4ab8aa2efad9a63146997cb7ebe117f2cc39546d4b73673857786e3067fdfb",
+    "crates/ui-navigation/src/state.rs": "3b20dc8bc6df2c1ccd876bd35ffa547f42076e04191ca75f07812db6b28a0bbd",
+    "crates/ui-navigation/src/tests.rs": "e2f92b0e20416186bd5fb60997c2d236bfb72defffde84f30168c53dbf7552b8",
+    "crates/ui-navigation/src/model.rs": "ac85189b808589825a5c58ac60b62817d2c1194a4719228584b20d5796caa873",
+    "crates/ui-navigation/src/view.rs": "89ba09b8b3acf9e1021ac385f26244ba97c02bad4bc07135072222a93bc71d93",
+    "apps/showcase/src/lib.rs": "34070ccb4eddfb6457d71b004c93286c0b5f39faedf28f55f944cfe6ba872400",
+    "apps/showcase/src/catalog.rs": "1d858059f30227da07e34a20946271167172c7054fd3b49628f9dd5a26dfaf1c",
+    "apps/showcase/src/navigation_demo.rs": "6820567517ca1f08a9dc0ec7968eacf604e117dbaeb0ab607febf113978562a8",
+    "apps/showcase/src/tests.rs": "55ef43f3a56890fe3a2ef087c2220c9ade3606395d06858d411123c6b7e25118",
+    "examples/navigation-app/src/main.rs": "4bcd54ea86908a1af99b5a804c706992ba4ab69ac5593b12cdd9270a579b9f35",
+    "crates/ui-kit/src/lib.rs": "1d7a6caede0f84db3dcd878ba819808557b5a2a9265bfa29072538e75fa7083a",
+    "crates/ui-kit/tests/public_api.rs": "885a331165b1a47000cdbd25bb6b3fa0127e9e8b69d022e94de7a3d87e80d44c"
+  },
+  "followup_verification": {
+    "timestamp": "2026-11-16T15:58:36.646650+07:00",
+    "execution_placement": "inline",
+    "source": "User selected following the existing implementation and verifying its result in this chat",
+    "checkpoint": "checkpoints/navigation.md#follow-up-verification-in-the-foundation-chat",
+    "source_fingerprints": "12 recorded files match",
+    "bundle_hash_match": true,
+    "native_patterns_exercised": [
+      "Sidebar",
+      "Dockbar Inline and Overlay",
+      "Minidock",
+      "Navbar",
+      "Flyout"
+    ],
+    "checks_rerun": [
+      "cargo fmt --all --check",
+      "python3 scripts/validate-dependencies.py",
+      "git diff --check"
+    ],
+    "full_suite": "Recorded 45 passing cases inspected, not rerun",
+    "acceptance": "Still blocked on native selected/expanded semantics and unexecuted verification steps",
+    "source_changes": false
+  },
+  "delivery_followup": {
+    "authorization": "User explicitly requested completing working-tree navigation changes, passing all checks, committing and pushing.",
+    "checkpoint": "checkpoints/navigation-delivery.md",
+    "automated_gates": "PASSED",
+    "workspace_cases": 45,
+    "native_showcase": "Five patterns and selected focus, dismissal, data and theme transitions observed on macOS 27.0.1 arm64.",
+    "native_acceptance": "OPEN: pinned selected/expanded bridge boundary and unchecked exhaustive scenarios remain recorded.",
+    "branch": "main"
+  }
 }

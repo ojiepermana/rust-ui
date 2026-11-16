@@ -10,7 +10,7 @@ Install Rust through rustup and your native toolchain. The workspace pins Rust *
 cargo run -p showcase
 ```
 
-Showcase links the local libraries directly. It includes Overview, 22 component stories, Themes, seven Layouts, searchable Icons, a live Playground and bundled Documentation. The toolbar switches light, dark and system appearance. Ctrl+Tab changes section; Command+B on macOS (Control+B elsewhere) collapses navigation.
+Showcase links the local libraries directly. It includes Overview, 23 component stories, including five native Navigation patterns, Themes, seven Layouts, searchable Icons, a live Playground and bundled Documentation. The toolbar switches light, dark and system appearance. Ctrl+Tab changes section; Command+B on macOS (Control+B elsewhere) collapses navigation.
 
 ## Workspace
 
@@ -83,3 +83,5 @@ Install `watchexec-cli` separately with `cargo install watchexec-cli --version 2
 * [Contributing](CONTRIBUTING.md)
 
 The initial story set demonstrates the architecture; it does not exhaust the upstream component catalog. Platform builds and native accessibility are reported only where observed. Upstream APIs remain available without copied implementation code. Licensed under Apache-2.0.
+
+Native navigation is available through `ui_kit::navigation`. Run `cargo run -p navigation-app --locked` for the facade consumer, or select Navigation in Showcase Components. See [the navigation guide](docs/getting-started/navigation.md) for controlled state, focus handoff and verification boundaries.

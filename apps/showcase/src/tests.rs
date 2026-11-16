@@ -299,3 +299,149 @@ async fn coalesced_vertical_divider_preserves_constraints_and_release(cx: &mut T
     })
     .unwrap();
 }
+
+// covers: AC-1, AC-3, AC-4..8, AC-15, AC-17. Real story, no fixture renderer.
+#[gpui_kit::test]
+fn navigation_gallery_uses_each_pattern_and_application_owned_destination(cx: &mut TestAppContext) {
+    use ui_kit::navigation::navigation_element_id;
+    let story = STORIES
+        .iter()
+        .position(|story| story.name == "Navigation")
+        .unwrap();
+    let (handle, view) = open(cx, Section::Components, story);
+    for pattern in 0..5 {
+        cx.update_window(handle.into(), |_, window, cx| {
+            view.read(cx)
+                .navigation_demo
+                .clone()
+                .update(cx, |demo, cx| demo.set_pattern(pattern, window, cx));
+            window.render_frame(cx);
+            if pattern == 4 {
+                let trigger = navigation_element_id(
+                    &super::navigation_demo::id("showcase-navigation"),
+                    None,
+                    "trigger",
+                );
+                window.click(trigger, cx);
+            }
+        })
+        .unwrap();
+        cx.run_until_parked();
+        cx.update_window(handle.into(), |_, window, cx| {
+            window.render_frame(cx);
+            let inbox = navigation_element_id(
+                &super::navigation_demo::id("showcase-navigation"),
+                Some(&super::navigation_demo::id("inbox")),
+                "item",
+            );
+            let button = window.find(inbox.clone());
+            assert!(button.visible(), "pattern {pattern}");
+            assert_eq!(button.label(), Some("Inbox, 120 unread messages"));
+            assert_eq!(button.selected(), Some(true));
+            assert_eq!(button.checked(), None, "selection must not fake a toggle");
+            window.click(inbox, cx);
+        })
+        .unwrap();
+        cx.run_until_parked();
+        cx.update_window(handle.into(), |_, window, cx| {
+            window.render_frame(cx);
+            let demo = view.read(cx).navigation_demo.read(cx);
+            assert_eq!(demo.activations, pattern + 1, "one request per click");
+            assert_eq!(demo.selected.as_str(), "inbox");
+        })
+        .unwrap();
+    }
+}
+
+// covers: AC-3, AC-9, AC-13, AC-15, AC-16. Retained ID and shell focus handoff.
+#[gpui_kit::test]
+fn navigation_model_update_retains_focus_and_leaving_story_restores_shell_shortcuts(
+    cx: &mut TestAppContext,
+) {
+    use ui_kit::navigation::navigation_element_id;
+    let story = STORIES
+        .iter()
+        .position(|story| story.name == "Navigation")
+        .unwrap();
+    let (handle, view) = open(cx, Section::Components, story);
+    cx.update_window(handle.into(), |_, window, cx| {
+        window.render_frame(cx);
+        let navigation = view.read(cx).navigation_demo.read(cx).navigation.clone();
+        let inbox = super::navigation_demo::id("inbox");
+        navigation
+            .read(cx)
+            .item_focus_handle(&inbox)
+            .unwrap()
+            .focus(window, cx);
+        navigation.update(cx, |state, cx| {
+            state
+                .set_model(
+                    super::navigation_demo::model(false, true, false),
+                    window,
+                    cx,
+                )
+                .unwrap()
+        });
+        window.render_frame(cx);
+        let control = navigation_element_id(
+            &super::navigation_demo::id("showcase-navigation"),
+            Some(&inbox),
+            "item",
+        );
+        assert_eq!(window.find(control).focused(), Some(true));
+        view.update(cx, |view, cx| view.navigate(Section::Overview, window, cx));
+        window.render_frame(cx);
+        assert!(view.read(cx).focus.is_focused(window));
+        window.press("ctrl-tab", cx);
+        assert_eq!(view.read(cx).section(), Section::Components);
+    })
+    .unwrap();
+}
+
+// covers: AC-5, AC-12, AC-16, AC-17. Existing layout contract remains valid.
+#[gpui_kit::test]
+fn navigation_gallery_renders_theme_density_and_rem_matrix(cx: &mut TestAppContext) {
+    use ui_kit::core::{Density, ThemeMode};
+    let story = STORIES
+        .iter()
+        .position(|story| story.name == "Navigation")
+        .unwrap();
+    let (handle, view) = open(cx, Section::Components, story);
+    for mode in [ThemeMode::Light, ThemeMode::Dark] {
+        for density in [Density::Comfortable, Density::Compact] {
+            for rem in [16., 20., 24.] {
+                for reduced in [false, true] {
+                    cx.update_window(handle.into(), |_, window, cx| {
+                        ThemeService::select(mode, Some(window), cx).unwrap();
+                        ThemeService::set_density(density, cx);
+                        cx.set_reduce_motion(reduced);
+                        window.set_rem_size(px(rem));
+                        for pattern in 0..5 {
+                            view.read(cx)
+                                .navigation_demo
+                                .clone()
+                                .update(cx, |demo, cx| demo.set_pattern(pattern, window, cx));
+                            window.render_frame(cx);
+                            assert!(window.find("navigation-pattern-4").visible());
+                            let inbox_id = super::navigation_demo::id("inbox");
+                            let target = ui_kit::navigation::navigation_element_id(
+                                &super::navigation_demo::id("showcase-navigation"),
+                                if pattern == 4 { None } else { Some(&inbox_id) },
+                                if pattern == 4 { "trigger" } else { "item" },
+                            );
+                            let control = window.find(target);
+                            assert!(control.visible(), "native control should be visible in pattern {pattern}");
+                            assert!(control.bounds().size.height >= px(20.), "native control height should remain intrinsic in pattern {pattern}");
+                            let region = window.find(ui_kit::navigation::navigation_element_id(
+                                &super::navigation_demo::id("showcase-navigation"), None, "root")).bounds();
+                            assert!(control.bounds().top() >= region.top() - px(0.5)
+                                && control.bounds().bottom() <= region.bottom() + px(0.5),
+                                "control must fit fully inside navigation height in pattern {pattern}");
+                        }
+                    })
+                    .unwrap();
+                }
+            }
+        }
+    }
+}

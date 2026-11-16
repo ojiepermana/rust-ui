@@ -1,13 +1,9 @@
-# Foundation verification coordination
+# Native navigation team
 
-Runtime identity and tasks are authoritative in state.json.
+Runtime and target identity live in state.json. Previous foundation evidence is retained under runs/ and existing checkpoints.
 
-Codex desktop exposes native spawning, fresh context, model and effort selection, messaging, continuation, waiting and interruption. Four contexts include the Leader, so this wave uses two helpers. Both helpers are read only in the shared checkout; only the Leader writes coordination records. Implementation worktrees are unavailable because main has no commits and all source is untracked. No source edits, commits, integration, push or publication are planned.
+Native child creation, messages, followup and interruption are available through live collaboration schemas. Four contexts include the Leader. Worktree isolation is provided by Git, separate from native parentage. No sidebar tree is requested or claimed. Actual child model execution metadata is not exposed; requested settings are recorded separately.
 
-The user explicitly selected Native Subagents for verification. No sidebar tree is requested or claimed. Native paths establish runtime parentage only.
+Scope, architect when needed, develop integration, test, document and sync stay inline. A bounded implementation child is explicitly native_task_adaptation, not execution of the upstream develop skill. Verify helpers may be delegated. Beta verification and tests are required. Independent review and release documentation are not required at this tier. No push, publication, release or commit is authorized by passing checks.
 
-The nine JS Mastery workflow dependencies are installed under /Users/ojiepermana/.agents/skills: scope, audit, architect, develop, check, test, document, sync and debug. check verify governs this run. Its source ownership remains read only, and final acceptance stays with the Leader. Reports here are agent-flow coordination checkpoints, not check-owned reports. Core architecture, implementation, test writing, review and release work are not being run. There is no scope artifact.
-
-Inline execution retains the current session. The session declares GPT-6 based Codex but does not expose an exact model release or effort, so these remain unknown. Helpers request routine source, Terra family, gpt-6.1-terra, medium effort through the live spawn schema. Accepted dispatch will not be treated as observed model metadata.
-
-Static contract analysis, headless command results and native observations are separate. Existing validation.md records prior results, which are context rather than fresh proof.
+Workflow dependencies scope, audit, architect, develop, check, test, document, sync and debug are present under /Users/ojiepermana/.agents/skills, from JS Mastery workflow skills. Curated AGENTS.md means audit bootstrap is unnecessary. Approved design means architect redesign is unnecessary.

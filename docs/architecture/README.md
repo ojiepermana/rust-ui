@@ -11,6 +11,11 @@ graph TD
   ui-kit --> ui-icons
   ui-kit --> ui-layout
   ui-kit --> ui-core
+  ui-kit --> ui-navigation
+  ui-navigation --> ui-components
+  ui-navigation --> ui-icons
+  ui-navigation --> ui-theme
+  ui-navigation --> GPUI-Kit
   ui-theme --> ui-core
   ui-layout --> ui-components
   ui-components --> GPUI-Kit
@@ -27,6 +32,7 @@ graph TD
 | ui-theme | ThemeDefinition, validation, ThemeRegistry, ThemeService, token source | Rendering or another component theme engine |
 | ui-icons | IconId, semantic IconName, validation, SVG asset selection | SVG rasterization |
 | ui-layout | Application regions, responsive composition, configuration | Resize arithmetic or docking behavior |
+| ui-navigation | Validated models, controlled intents, retained focus and scroll, native compositions | Routing, persistence or another renderer |
 | ui-kit | Re-exports and curated prelude | Business logic or implementations |
 
 ThemeService resolves repository configuration through GPUI Kit's SemanticThemeConfig and applies it through Theme::update, which synchronizes Base and refreshes windows. Its retained complete semantic snapshot supplies application scale overrides that upstream legacy storage cannot retain. This is a projection of one configuration, not a second renderer theme.
@@ -38,3 +44,7 @@ AppShell is a stateless RenderOnce composition. Optional regions accept IntoElem
 The workspace root is the requested project directory, rather than adding a redundant rust-ui-kit subdirectory. Empty directories and unused font bundles were not generated.
 
 A temporary crates.io source override carries one functional GPUI Base 0.9.1 drag-start fix, with the original source and a complete patch at vendor/gpui-base. It is excluded from workspace membership and checked by the dependency validator. This preserves upstream ownership of panel behavior while handling coalesced native input. See compatibility.md before updating or removing it.
+
+## Native navigation
+
+`ui-navigation` owns validated item trees, application supplied presentation, request events and retained instance focus/scroll handles. It composes GPUI Kit Button, Collapsible, SidebarToggleButton, Badge/Tag and controlled Popover. It depends on ui-components, ui-icons, ui-theme and the pinned kit, with no dependency to or from ui-layout. ui-kit re-exports it as `navigation`. Applications retain both event and observer subscriptions, decide selection and popup policy, and restore focus before removing a region. The Showcase story and navigation-app consumer use only the facade.

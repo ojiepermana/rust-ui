@@ -22,6 +22,7 @@ ui-components = { path = "crates/ui-components", version = "0.1.0" }
 ui-theme = { path = "crates/ui-theme", version = "0.1.0" }
 ui-layout = { path = "crates/ui-layout", version = "0.1.0" }
 ui-icons = { path = "crates/ui-icons", version = "0.1.0" }
+ui-navigation = { path = "crates/ui-navigation", version = "0.1.0" }
 ui-kit = { path = "crates/ui-kit", version = "0.1.0" }
 
 [workspace.lints.rust]

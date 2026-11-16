@@ -1,0 +1,9 @@
+{
+  "tool": "cargo test",
+  "gate": null,
+  "additionalTools": ["GPUI Kit test-support"],
+  "e2eTool": "none",
+  "testDir": "crate tests and src/tests.rs",
+  "filePattern": "#[test] and #[gpui_kit::test]",
+  "packageManager": "cargo"
+}

@@ -17,6 +17,8 @@ pub use ui_core as core;
 pub use ui_icons as icons;
 /// Reusable application compositions.
 pub use ui_layout as layout;
+/// Controlled native navigation compositions.
+pub use ui_navigation as navigation;
 /// Application owned theme definitions and upstream integration.
 pub use ui_theme as theme;
 /// Common imports for applications. Larger upstream APIs remain in `components`.
@@ -36,6 +38,12 @@ pub mod prelude {
     pub use ui_layout::{
         AppShell, ShellConfig, SplitWorkspace, TabbedWorkspace, content_container, dashboard,
         header, navigation_group, sidebar_navigation,
+    };
+    pub use ui_navigation::{
+        DockbarMode, Navigation, NavigationBadge, NavigationBranch, NavigationError,
+        NavigationEvent, NavigationGroup, NavigationId, NavigationItem, NavigationKind,
+        NavigationMetrics, NavigationModel, NavigationNode, NavigationPresentation,
+        NavigationState,
     };
     pub use ui_theme::{ThemeDefinition, ThemeRegistry, ThemeService, content_gap};
 }

@@ -18,5 +18,6 @@ ui-core.workspace = true
 ui-components.workspace = true
 ui-theme.workspace = true
 ui-layout.workspace = true
+ui-navigation.workspace = true
 ui-icons.workspace = true
 gpui-kit.workspace = true

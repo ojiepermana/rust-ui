@@ -40,8 +40,10 @@ machine or can be regenerated. The graphify skill recreates the interpreter
 binding when needed. Do not copy these local bindings from another checkout.
 
 The graph is a dated snapshot, not proof of current source behavior. The initial
-snapshot predates the selection virtualization regression; its later source trace
-and passing test evidence are saved under `memory/`. Refresh with
+snapshot predates the selection virtualization regression and navigation crate;
+their later source traces and verification evidence are saved under `memory/`.
+See also the [navigation delivery record](../docs/agent-team/checkpoints/navigation-delivery.md).
+Refresh with
 `/graphify . --update` after source changes. Keep the updated knowledge files in
 the same commit as the source change when practical. Native platform and
 accessibility verification remain separate from headless test results.

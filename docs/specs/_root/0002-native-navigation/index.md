@@ -1,7 +1,7 @@
 # 0002. Navigasi native dengan GPUI Kit
 
 **Date**: 2026-11-16
-**Status**: Proposed
+**Status**: In Progress
 **Konfirmasi desain**: 2026-11-16, isi spec disetujui pengguna setelah pemeriksaan silang dan perbaikan. Implementasi belum dimulai.
 
 ## Summary

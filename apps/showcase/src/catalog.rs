@@ -173,4 +173,11 @@ stories![
         "SplitWorkspace::master_detail(\"workspace\", master, detail)",
         "resizable"
     ),
+    (
+        "Navigation",
+        "Five controlled native navigation compositions with application owned state.",
+        "Sidebar, dockbar, minidock, navbar, flyout; nested, disabled, empty and live updates.",
+        "Navigation::new(&self.navigation).accessibility_label(\"Workspace\")",
+        "ui_kit::navigation"
+    ),
 ];

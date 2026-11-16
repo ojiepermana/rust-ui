@@ -10,12 +10,13 @@ metadata = json.loads(subprocess.check_output(
     ["cargo", "metadata", "--locked", "--format-version", "1"], cwd=root))
 packages = {p["id"]: p for p in metadata["packages"]}
 members = {packages[i]["name"]: packages[i] for i in metadata["workspace_members"]}
-required = {"ui-core", "ui-components", "ui-theme", "ui-layout", "ui-icons", "ui-kit", "showcase"}
+required = {"ui-core", "ui-components", "ui-theme", "ui-layout", "ui-icons", "ui-navigation", "ui-kit", "showcase"}
 assert required <= set(members), "required workspace members are missing"
 libraries = required - {"showcase"}
 allowed = {
     "ui-core": set(), "ui-components": set(), "ui-theme": {"ui-core"},
     "ui-icons": set(), "ui-layout": {"ui-components"},
+    "ui-navigation": {"ui-components", "ui-icons", "ui-theme"},
     "ui-kit": libraries - {"ui-kit"},
 }
 graph = {name: set() for name in members}

@@ -1,6 +1,7 @@
 //! Native interactive workbench consuming the local UI Kit facade.
 use ui_kit::gpui as gpui_kit;
 mod catalog;
+mod navigation_demo;
 pub use catalog::STORIES;
 use ui_kit::components::{
     Colorize, Size,
@@ -108,6 +109,7 @@ impl Section {
 }
 /// Register app shortcuts once during application bootstrap.
 pub fn init(cx: &mut App) {
+    ui_kit::navigation::init(cx);
     cx.bind_keys([
         KeyBinding::new("ctrl-tab", NextSection, None),
         KeyBinding::new("ctrl-shift-tab", PreviousSection, None),
@@ -135,6 +137,7 @@ pub fn init(cx: &mut App) {
 
 /// Retained state for all native stories. Entities and subscriptions survive page changes.
 pub struct Showcase {
+    navigation_demo: Entity<navigation_demo::NavigationDemo>,
     section: Section,
     collapsed: bool,
     focus: FocusHandle,
@@ -209,14 +212,18 @@ impl Showcase {
                 }
             }));
         }
-        subscriptions.push(cx.subscribe_in(&picker, window, |this, _, event, _, cx| {
-            if let SelectEvent::Confirm(Some(name)) = event
-                && let Some(index) = STORIES.iter().position(|s| s.name == *name)
-            {
-                this.story = index;
-                cx.notify();
-            }
-        }));
+        subscriptions.push(
+            cx.subscribe_in(&picker, window, |this, _, event, window, cx| {
+                if let SelectEvent::Confirm(Some(name)) = event
+                    && let Some(index) = STORIES.iter().position(|s| s.name == *name)
+                {
+                    this.navigation_demo
+                        .update(cx, |demo, cx| demo.restore_focus(window, cx));
+                    this.story = index;
+                    cx.notify();
+                }
+            }),
+        );
         subscriptions.push(cx.observe(&slider, |_, _, cx| cx.notify()));
         subscriptions.push(cx.observe_window_appearance(window, |this, window, cx| {
             if let Err(error) = ThemeService::sync_system(window, cx) {
@@ -230,7 +237,10 @@ impl Showcase {
         };
         let focus = cx.focus_handle();
         window.focus(&focus, cx);
+        let navigation_demo =
+            cx.new(|cx| navigation_demo::NavigationDemo::new(focus.clone(), window, cx));
         Self {
+            navigation_demo,
             section: Section::Overview,
             collapsed: false,
             focus,
@@ -276,6 +286,8 @@ impl Showcase {
             .count()
     }
     fn navigate(&mut self, section: Section, window: &mut Window, cx: &mut Context<Self>) {
+        self.navigation_demo
+            .update(cx, |demo, cx| demo.restore_focus(window, cx));
         self.section = section;
         // Upstream buttons preserve pointer focus. Reanchor actions before an
         // input on the previous page leaves the dispatch tree.
@@ -422,16 +434,17 @@ impl Showcase {
         let story = &STORIES[self.story];
         v_flex().gap_5().child(title("Components","Live upstream controls through the local ui-components and ui-kit crates.",cx))
             .child(h_flex().gap_4().child(div().w_64().child(Select::new(&self.picker).id("story-picker").title_prefix("Component: ")))
-                .child(Button::new("component-api").ghost().label("API reference ↗").on_click(move|_,_,cx|cx.open_url(&format!("https://docs.rs/gpui-component/0.9.1/gpui_component/{}/",story.module)))))
+                .child(Button::new("component-api").ghost().label(if story.name == "Navigation" { "Copy import" } else { "API reference ↗" }).on_click(move|_,_,cx| { if story.name == "Navigation" { cx.write_to_clipboard(ClipboardItem::new_string("use ui_kit::navigation::*;".into())); } else { cx.open_url(&format!("https://docs.rs/gpui-component/0.9.1/gpui_component/{}/",story.module)); } })))
             .child(card(cx).gap_4().child(div().text_2xl().font_semibold().child(story.name)).child(muted(story.description,cx))
                 .child(div().id("live-preview").test_support().min_h_32().p_5().rounded_lg().border_1().border_color(cx.theme().border).child(self.story_preview(cx)))
                 .child(muted(story.states,cx)))
             .child(usage_card(story.usage,cx))
             .child(self.property_controls(cx))
-            .child(muted("The complete upstream catalog is re-exported. These 22 stories are the initial demonstrated coverage; advanced systems remain available through their upstream modules.",cx)).into_any_element()
+            .child(muted("The complete upstream catalog is re-exported. These stories demonstrate the supported integration; advanced systems remain available through their upstream modules.",cx)).into_any_element()
     }
     fn story_preview(&self, cx: &mut Context<Self>) -> AnyElement {
         match STORIES[self.story].name {
+            "Navigation" => self.navigation_demo.clone().into_any_element(),
             "Button" => h_flex()
                 .flex_wrap()
                 .gap_3()

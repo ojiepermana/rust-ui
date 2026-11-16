@@ -45,7 +45,7 @@ A graphical Wayland or X11 session and a functioning Vulkan driver are needed to
 
 Native macOS input can deliver down, one held move, then up. GPUI Base 0.9.1 discarded that first move when it started a panel drag, so no resize occurred without a second move. The workspace carries the published gpui-base 0.9.1 source with one callback changed to apply the initial sample through the existing resize_panel_at_handle function. GPUI Kit remains =0.9.1 and the renderer/runtime remains GPUI =0.3.12.
 
-[Patch provenance, complete diff and removal criteria](../../vendor/gpui-base/PATCHES.md) are recorded with the vendor package. The dependency validator verifies the original source hashes and the single intentional patch. No resize arithmetic or component implementation was replaced. The clean native build was verified in both drag directions, at minimum/maximum limits and on the inspector's second divider.
+[Patch provenance, complete diff and removal criteria](../../vendor/gpui-base/PATCHES.md) are recorded with the vendor package. The dependency validator verifies the original source hashes, the production divider patch and the separately recorded test-only selection virtualization addition. No resize arithmetic or component implementation was replaced. The clean native build was verified in both drag directions, at minimum/maximum limits and on the inspector's second divider.
 
 Cargo patches are not transitive. External path or Git consumers need the same override in their own workspace, as shown in the getting started guide. Before registry publication, select an upstream fixed release and remove this override. Do not replace the patch with an unrelated runtime or fork.
 
@@ -58,3 +58,7 @@ Published Dialog uses its title for the accessible name; the installed 0.9.1 typ
 ## Sources
 
 [Release](https://github.com/longbridge/gpui-kit/releases/tag/v0.9.1), [installation](https://gpui-kit.com/docs/installation), [pinned release manifest](https://github.com/longbridge/gpui-kit/blob/v0.9.1/Cargo.toml), [official Rust stable manifest](https://static.rust-lang.org/dist/channel-rust-stable.toml).
+
+## Native navigation accessibility boundary
+
+Navigation sets Button selected/expanded metadata explicitly through GPUI InteractiveElement. Production headless tests verify these values without toggle metadata. On the pinned macOS AccessKit 0.26.3 bridge, selection is limited to item-like roles (`node.rs`, `isAccessibilitySelected`) and expanded state has no mapping for these Buttons. The native inspection exposed Button names, roles, disabled state and popup dialogs, but did not expose the required selected/expanded status. Spec 0002 AC-12/AC-14 therefore remain incomplete for native metadata. No role substitution, dependency upgrade or vendor change was made by navigation. VoiceOver output remains unverified.

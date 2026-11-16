@@ -8,6 +8,8 @@ Run cargo fmt --all --check, cargo clippy --workspace --all-targets --locked -- 
 ## Ownership
 GPUI Kit owns standard components and rendering. ui-components re-exports its catalog. ui-theme owns configuration, validation and token projection. ui-icons owns SVG registration. ui-layout owns reusable compositions. ui-kit only assembles the public API. Showcase holds demo state and consumes local crates.
 
+`ui-navigation` owns validated navigation models, controlled request events and retained instance focus/scroll coordination. Consumers retain both event and observer subscriptions, and restore focus before removing a region. See docs/getting-started/navigation.md.
+
 ## Rules
 Use the runtime exported by ui_kit::gpui (gpui-kit 0.9.1, GPUI snapshot 0.3.12). Keep internal dependencies as versioned paths. Do not copy upstream components or add another renderer. Retain state entities and subscriptions outside render. Restore shell focus when a focused page control leaves the element tree. Use semantic colors, stable IDs and native controls for commands. Document public APIs. Report native platform and accessibility verification separately from headless tests. No push, publication or release without explicit user authorization.
 
@@ -16,3 +18,7 @@ When adding a component or changing GPUI state ownership, consult the pinned ups
 
 ## Git
 integration: off
+
+## Context files
+
+- [crates/ui-navigation/AGENTS.md](crates/ui-navigation/AGENTS.md): navigation model, lifecycle, composition and regression boundaries.

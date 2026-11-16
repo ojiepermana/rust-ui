@@ -1,26 +1,26 @@
 {
-  "schema_version": 2,
-  "timestamp": "2026-11-16T15:11:47.359708+07:00",
-  "runtime_ref": "state.json",
+  "runtime_kind": "codex",
   "leader": {
     "selection": null,
     "family": null,
     "effort": null,
-    "evidence": "Session identifies GPT-6 based Codex; exact release/family routing and effort not exposed"
+    "evidence": "System identifies GPT-6-based Codex, exact active release/family/effort not exposed. Inline uses session unchanged."
   },
-  "routine": {
-    "selection": "gpt-6.1-terra",
-    "family": "terra",
-    "supported_efforts": [
-      "low",
-      "medium",
-      "high",
-      "xhigh",
-      "max",
-      "ultra"
+  "engineering": {
+    "source": "engineering",
+    "family": "sol",
+    "requested": {
+      "selection": "gpt-6.1-sol",
+      "effort": "high",
+      "via": "collaboration.spawn_agent"
+    },
+    "configured": null,
+    "observed": null,
+    "evidence": [
+      "Live spawn schema advertises this selector and high effort"
     ],
-    "evidence": "Live spawn schema",
-    "access": "Two dispatches accepted; observed execution model metadata unavailable"
+    "rationale": "Substantial implementation against approved shared contract",
+    "substitution": null
   },
-  "substitutions": []
+  "updated_at": "2026-11-16T15:20:30.494164+07:00"
 }
