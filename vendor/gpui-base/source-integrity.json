@@ -232,7 +232,8 @@
   },
   "package": "gpui-base",
   "patched_files": {
-    "src/resizable/panel.rs": "1620b854f6d0bbe28a26c94bb206ae17e84fa1f07304b9fe72de87cf8e0655da"
+    "src/resizable/panel.rs": "1620b854f6d0bbe28a26c94bb206ae17e84fa1f07304b9fe72de87cf8e0655da",
+    "src/text_selection.rs": "1bb13d693aea467e5342f611857e73737cd9df8ae094e3d7a3b3e82c230b3b3f"
   },
   "version": "0.9.1"
 }

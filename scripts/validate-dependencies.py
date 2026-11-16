@@ -68,5 +68,7 @@ integrity = json.loads((vendor / "source-integrity.json").read_text())
 for path, original in integrity["original_files"].items():
     expected = integrity["patched_files"].get(path, original)
     assert hashlib.sha256((vendor / path).read_bytes()).hexdigest() == expected, f"unexpected vendor change: {path}"
-assert set(integrity["patched_files"]) == {"src/resizable/panel.rs"}
+assert set(integrity["patched_files"]) == {
+    "src/resizable/panel.rs", "src/text_selection.rs",
+}
 print("Verified pinned GPUI Base compatibility patch and original source integrity.")

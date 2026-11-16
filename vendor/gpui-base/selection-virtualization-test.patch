@@ -1,0 +1,180 @@
+--- a/src/text_selection.rs
++++ b/src/text_selection.rs
+@@ -4916,6 +4916,177 @@
+         });
+     }
+
++    struct VirtualizedSelectionRoot {
++        text: Entity<crate::text::TextViewState>,
++        scroll: crate::VirtualListScrollHandle,
++        rendered: Rc<RefCell<std::ops::Range<usize>>>,
++    }
++
++    impl Render for VirtualizedSelectionRoot {
++        fn render(&mut self, _: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
++            let list = crate::v_virtual_list(
++                cx.entity(),
++                "virtualized-selection-rows",
++                Rc::new(vec![size(px(240.), px(64.)); 50]),
++                |this, range, _, _| {
++                    *this.rendered.borrow_mut() = range.clone();
++                    range
++                        .map(|ix| {
++                            div().id(ix).w(px(240.)).h(px(64.)).when(ix == 0, |row| {
++                                row.child(crate::text::TextView::new(&this.text))
++                            })
++                        })
++                        .collect::<Vec<_>>()
++                },
++            )
++            .track_scroll(&self.scroll);
++            div()
++                .size_full()
++                .child(TextSelectionLayer)
++                .child(div().w(px(240.)).h(px(64.)).child(list))
++        }
++    }
++
++    #[gpui::test]
++    fn whole_text_view_virtualization_expires_marker_and_stops_auto_scroll(
++        cx: &mut TestAppContext,
++    ) {
++        cx.update(crate::init);
++        let (root, cx) = cx.add_window_view(|_, cx| VirtualizedSelectionRoot {
++            text: cx.new(|cx| crate::text::TextViewState::markdown("selected text", cx)),
++            scroll: crate::VirtualListScrollHandle::new(),
++            rendered: Rc::new(RefCell::new(0..0)),
++        });
++        draw_selection_frame(cx);
++        draw_selection_frame(cx);
++        let (text, scroll, rendered) = root.read_with(cx, |root, _| {
++            (
++                root.text.clone(),
++                root.scroll.clone(),
++                root.rendered.clone(),
++            )
++        });
++        let commands = Rc::new(RefCell::new(Vec::new()));
++        let observed = commands.clone();
++        let (state, participant, registration, marker) = cx.update(|window, cx| {
++            let state = WindowSelectionState::existing(window, cx).unwrap();
++            let (participant, registration) = {
++                let participants = state.read(cx).participants.borrow();
++                assert_eq!(participants.len(), 1);
++                let entry = participants.values().next().unwrap();
++                (
++                    TextSelectionHandle(entry.participant.upgrade().unwrap()),
++                    entry.registration.clone(),
++                )
++            };
++            let marker = registration
++                .rendered
++                .clone()
++                .expect("TextView attaches a marker");
++            participant
++                .subscribe(
++                    move |event, _| {
++                        if let TextSelectionEvent::AutoScroll(delta) = event {
++                            observed.borrow_mut().push(*delta);
++                        }
++                    },
++                    cx,
++                )
++                .detach();
++            assert!(marker.upgrade().is_some());
++            (state, participant, registration, marker)
++        });
++
++        // Begin a real drag and leave the button held below the enclosing list.
++        assert!(!select_retained_texts(0, false, cx).is_empty());
++        cx.update(|window, cx| {
++            window.dispatch_event(
++                gpui::PlatformInput::MouseMove(MouseMoveEvent {
++                    position: point(px(20.), px(100.)),
++                    pressed_button: Some(MouseButton::Left),
++                    ..Default::default()
++                }),
++                cx,
++            );
++            assert!(state.read(cx).is_selecting);
++            assert!(state.read(cx).auto_scroll.is_active());
++        });
++        draw_selection_frame(cx);
++        cx.update(|_, cx| {
++            assert!(rendered.borrow().contains(&0));
++            assert!(
++                registration.is_rendered(),
++                "a retained row must keep its marker"
++            );
++            assert!(state.read(cx).auto_scroll.is_active());
++        });
++        commands.borrow_mut().clear();
++
++        // Keep both model entities alive while the virtualizer drops the whole view.
++        scroll.scroll_to_item(30, gpui::ScrollStrategy::Top);
++        cx.update(|window, cx| {
++            window.refresh();
++            window.draw(cx).clear(cx);
++        });
++        cx.run_until_parked();
++        draw_selection_frame(cx);
++        cx.update(|window, cx| {
++            assert!(
++                !rendered.borrow().contains(&0),
++                "the TextView row must be omitted"
++            );
++            assert!(text.read(cx).bounds().size.width > px(0.));
++            assert!(participant.0.downgrade().upgrade().is_some());
++            assert!(marker.upgrade().is_none(), "the element marker must expire");
++            assert!(!registration.is_rendered());
++            assert!(
++                !state
++                    .read(cx)
++                    .participants
++                    .borrow()
++                    .contains_key(&participant.entity_id())
++            );
++            assert!(!state.read(cx).auto_scroll.is_active());
++            assert_eq!(state.read(cx).auto_scroll.last_drag_position, None);
++            assert!(!state.read(cx).is_selecting);
++            assert!(state.read(cx).anchor.is_none());
++            assert!(state.read(cx).cursor.is_none());
++            assert!(participant.snapshot(cx).is_none());
++            assert!(!TextSelection::has_selection(window, cx));
++            assert_eq!(TextSelection::selected_text(window, cx), "");
++        });
++        assert_eq!(
++            commands.borrow().last(),
++            Some(&None),
++            "cleanup must stop the anchor"
++        );
++
++        scroll.scroll_to_item(0, gpui::ScrollStrategy::Top);
++        cx.update(|window, cx| {
++            window.refresh();
++            window.draw(cx).clear(cx);
++        });
++        cx.run_until_parked();
++        draw_selection_frame(cx);
++        cx.update(|window, cx| {
++            assert!(rendered.borrow().contains(&0));
++            {
++                let current = state.read(cx).participants.borrow();
++                let current = &current[&participant.entity_id()].registration;
++                assert!(current.is_rendered());
++                assert_ne!(
++                    current.rendered.as_ref().unwrap().entity_id(),
++                    marker.entity_id()
++                );
++            }
++            assert!(
++                !TextSelection::has_selection(window, cx),
++                "remount must not revive selection"
++            );
++            assert!(!state.read(cx).auto_scroll.is_active());
++        });
++    }
++
+     struct RetainedSelectionText {
+         text: Entity<crate::text::TextViewState>,
+         renders: Rc<Cell<usize>>,
