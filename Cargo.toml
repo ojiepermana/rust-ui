@@ -1,0 +1,45 @@
+[workspace]
+resolver = "3"
+members = ["crates/*", "apps/showcase", "examples/*"]
+default-members = ["apps/showcase"]
+exclude = ["vendor/gpui-base"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.100"
+license = "Apache-2.0"
+authors = ["Rust UI Kit contributors"]
+
+[workspace.dependencies]
+gpui-kit = "=0.9.1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+roxmltree = "0.21"
+ui-core = { path = "crates/ui-core", version = "0.1.0" }
+ui-components = { path = "crates/ui-components", version = "0.1.0" }
+ui-theme = { path = "crates/ui-theme", version = "0.1.0" }
+ui-layout = { path = "crates/ui-layout", version = "0.1.0" }
+ui-icons = { path = "crates/ui-icons", version = "0.1.0" }
+ui-kit = { path = "crates/ui-kit", version = "0.1.0" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+dbg_macro = "deny"
+todo = "deny"
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false
+
+# Temporary behavior fix for coalesced native divider input; see vendor/gpui-base/PATCHES.md.
+[patch.crates-io]
+gpui-base = { path = "vendor/gpui-base" }

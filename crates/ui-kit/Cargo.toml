@@ -1,0 +1,22 @@
+[package]
+name = "ui-kit"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Reusable native Rust desktop UI facade."
+readme = "README.md"
+keywords = ["gpui", "desktop", "ui"]
+categories = ["gui"]
+
+[lints]
+workspace = true
+
+[dependencies]
+ui-core.workspace = true
+ui-components.workspace = true
+ui-theme.workspace = true
+ui-layout.workspace = true
+ui-icons.workspace = true
+gpui-kit.workspace = true

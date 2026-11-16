@@ -1,0 +1,16 @@
+name: Bug report
+description: Report a reproducible native UI issue
+title: "[Bug] "
+body:
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction and expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: OS, display backend, Rust version and library version
+    validations:
+      required: true

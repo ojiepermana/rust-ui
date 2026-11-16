@@ -1,0 +1,36 @@
+name: Prepare reviewed release artifacts
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Proposed semantic version, e.g. v0.1.0
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  prepare:
+    # Artifact preparation only. No registry publishing or GitHub release creation.
+    runs-on: macos-15
+    timeout-minutes: 45
+    env:
+      REQUESTED_VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - run: rustup toolchain install 1.100.0 --profile minimal --component rustfmt --component clippy
+      - name: Validate semantic version
+        run: python3 scripts/check-release.py "$REQUESTED_VERSION"
+      - run: python3 scripts/validate-dependencies.py
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - run: cargo test --workspace --locked
+      - run: cargo build --release --workspace --locked
+      - run: cargo doc --workspace --no-deps --locked
+      - name: Prepare source archive
+        run: git archive --format=tar.gz --output=rust-ui-kit-source.tar.gz HEAD
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: reviewed-release-candidate
+          path: |
+            rust-ui-kit-source.tar.gz
+            target/release/showcase

@@ -1,0 +1,31 @@
+{
+  "corpus_tokens": 632968,
+  "corpus_words": 474726,
+  "nodes": 11818,
+  "edges": 35875,
+  "avg_query_tokens": 42485,
+  "reduction_ratio": 14.9,
+  "per_question": [
+    {
+      "question": "what is the main entry point",
+      "query_tokens": 116187,
+      "reduction": 5.4
+    },
+    {
+      "question": "how are errors handled",
+      "query_tokens": 1508,
+      "reduction": 419.7
+    },
+    {
+      "question": "what connects the data layer to the api",
+      "query_tokens": 48298,
+      "reduction": 13.1
+    },
+    {
+      "question": "what are the core abstractions",
+      "query_tokens": 3948,
+      "reduction": 160.3
+    }
+  ],
+  "methodology_note": "Measured corpus word count from detection; token counts and reductions are heuristic estimates, not measured model usage."
+}

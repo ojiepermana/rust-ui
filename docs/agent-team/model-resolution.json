@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "timestamp": "2026-11-16T15:07:35.701899+07:00",
+  "runtime_ref": "state.json",
+  "leader": {
+    "selection": null,
+    "family": null,
+    "effort": null,
+    "evidence": "Session identifies GPT-6 based Codex; exact release/family routing and effort not exposed"
+  },
+  "routine": {
+    "selection": "gpt-6.1-terra",
+    "family": "terra",
+    "supported_efforts": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max",
+      "ultra"
+    ],
+    "evidence": "Live spawn schema",
+    "access": "advertised; not yet dispatched"
+  },
+  "substitutions": []
+}

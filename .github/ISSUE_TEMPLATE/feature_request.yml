@@ -1,0 +1,10 @@
+name: Feature request
+description: Propose a reusable UI capability
+title: "[Feature] "
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Application use case and upstream API evidence
+    validations:
+      required: true

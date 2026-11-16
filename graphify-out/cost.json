@@ -1,0 +1,17 @@
+{
+  "runs": [
+    {
+      "date": "2026-11-16T08:08:32.824297+00:00",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "files": 308,
+      "token_usage_status": "unavailable",
+      "semantic_files_processed": 53,
+      "extraction_mode": "Codex host workers; standard"
+    }
+  ],
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "token_usage_status": "unavailable",
+  "token_usage_note": "Host did not expose actual usage; all zero counters are placeholders, not measured usage."
+}

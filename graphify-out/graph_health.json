@@ -1,0 +1,289 @@
+{
+  "node_count": 11818,
+  "unverified_node_count": 0,
+  "raw_edge_count": 39443,
+  "non_object_edges": 0,
+  "missing_endpoint_edges": 0,
+  "dangling_endpoint_edges": 1124,
+  "self_loop_edges": 0,
+  "valid_candidate_edges": 38319,
+  "exact_duplicate_edges": 734,
+  "directed_unique_endpoint_pairs": 35832,
+  "directed_same_endpoint_collapsed_edges": 2487,
+  "undirected_unique_endpoint_pairs": 35759,
+  "undirected_same_endpoint_collapsed_edges": 2560,
+  "same_endpoint_group_count": 1633,
+  "relation_variant_groups": 39,
+  "source_file_variant_groups": 0,
+  "source_location_variant_groups": 747,
+  "context_variant_groups": 460,
+  "post_build_graph_type": "Graph",
+  "post_build_node_count": 11818,
+  "post_build_edge_count": 35875,
+  "post_build_error": "",
+  "producer_suppression": {
+    "path": "/Users/ojiepermana/.local/share/uv/tools/graphifyy/lib/python3.14/site-packages/graphify/extract.py",
+    "total_sites": 12,
+    "sites": [
+      {
+        "line": 1154,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 1420,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 1422,
+        "name": "seen_doc_refs",
+        "tuple_arity": 0,
+        "sample": "seen_doc_refs: set[str] = set()"
+      },
+      {
+        "line": 1782,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = {n[\"id\"] for n in nodes}"
+      },
+      {
+        "line": 1929,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids = {n.get(\"id\") for n in nodes}"
+      },
+      {
+        "line": 2460,
+        "name": "seen_keys",
+        "tuple_arity": 0,
+        "sample": "seen_keys: set[tuple] = set()"
+      },
+      {
+        "line": 2629,
+        "name": "seen_keys",
+        "tuple_arity": 0,
+        "sample": "seen_keys: set[tuple] = set()"
+      },
+      {
+        "line": 4035,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 4143,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 4222,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 4737,
+        "name": "seen_ids",
+        "tuple_arity": 0,
+        "sample": "seen_ids: set[str] = set()"
+      },
+      {
+        "line": 4738,
+        "name": "seen_edges",
+        "tuple_arity": 4,
+        "sample": "seen_edges: set[tuple[str, str, str, str | None]] = set()"
+      }
+    ],
+    "error": ""
+  },
+  "examples": [
+    {
+      "source": "vendor_gpui_base_src_input_base_state_inputbasestate",
+      "target": "vendor_gpui_base_src_input_base_state_rs_option",
+      "edge_count": 39,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "vendor/gpui-base/src/input/base/state.rs"
+      ],
+      "source_locations": [
+        "L440",
+        "L445",
+        "L446",
+        "L451",
+        "L459",
+        "L463",
+        "L472",
+        "L473",
+        "L481",
+        "L483",
+        "L485",
+        "L486",
+        "L491",
+        "L492",
+        "L494",
+        "L498",
+        "L501",
+        "L502",
+        "L507",
+        "L517",
+        "L518",
+        "L519",
+        "L523",
+        "L524",
+        "L527",
+        "L529",
+        "L531",
+        "L538",
+        "L541",
+        "L545",
+        "L557",
+        "L558",
+        "L559",
+        "L562",
+        "L573",
+        "L575",
+        "L578",
+        "L586"
+      ],
+      "contexts": [
+        "field",
+        "generic_arg"
+      ]
+    },
+    {
+      "source": "vendor_gpui_base_src_text_state_textviewstate",
+      "target": "vendor_gpui_base_src_text_state_rs_option",
+      "edge_count": 18,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "vendor/gpui-base/src/text/state.rs"
+      ],
+      "source_locations": [
+        "L123",
+        "L130",
+        "L131",
+        "L132",
+        "L133",
+        "L134",
+        "L135",
+        "L136",
+        "L137",
+        "L138",
+        "L144",
+        "L145",
+        "L152",
+        "L159",
+        "L168",
+        "L169",
+        "L172",
+        "L173"
+      ],
+      "contexts": [
+        "field"
+      ]
+    },
+    {
+      "source": "vendor_gpui_base_src_theme_tokens_colortokens",
+      "target": "vendor_gpui_base_src_animation_hsla",
+      "edge_count": 18,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "vendor/gpui-base/src/theme_tokens.rs"
+      ],
+      "source_locations": [
+        "L23",
+        "L24",
+        "L25",
+        "L26",
+        "L27",
+        "L28",
+        "L29",
+        "L30",
+        "L31",
+        "L32",
+        "L33",
+        "L34",
+        "L35",
+        "L36",
+        "L37",
+        "L38",
+        "L39",
+        "L46"
+      ],
+      "contexts": [
+        "field"
+      ]
+    },
+    {
+      "source": "vendor_gpui_base_src_text_text_view_textview",
+      "target": "vendor_gpui_base_src_text_text_view_rs_option",
+      "edge_count": 17,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "vendor/gpui-base/src/text/text_view.rs"
+      ],
+      "source_locations": [
+        "L197",
+        "L198",
+        "L199",
+        "L200",
+        "L201",
+        "L202",
+        "L203",
+        "L208",
+        "L209",
+        "L210",
+        "L211",
+        "L212",
+        "L213",
+        "L214",
+        "L215",
+        "L216",
+        "L218"
+      ],
+      "contexts": [
+        "field"
+      ]
+    },
+    {
+      "source": "vendor_gpui_base_src_input_base_state_inputbasestate",
+      "target": "vendor_gpui_base_src_animation_pixels",
+      "edge_count": 13,
+      "relations": [
+        "references"
+      ],
+      "source_files": [
+        "vendor/gpui-base/src/input/base/state.rs"
+      ],
+      "source_locations": [
+        "L454",
+        "L463",
+        "L494",
+        "L496",
+        "L498",
+        "L501",
+        "L538",
+        "L540",
+        "L545",
+        "L546",
+        "L575",
+        "L578"
+      ],
+      "contexts": [
+        "generic_arg"
+      ]
+    }
+  ]
+}

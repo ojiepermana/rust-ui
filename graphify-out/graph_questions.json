@@ -1,0 +1,76 @@
+{
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Pixels` connect `Editor Layout Metrics` to `Input State Context`, `Input State Tests`, `Dock Tab Groups`, and 138 other communities?",
+      "why": "High betweenness centrality (0.329) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `App` connect `Selection App Lifecycle` to `Input State Context`, `Input State Tests`, `Dock Tab Groups`, and 157 other communities?",
+      "why": "High betweenness centrality (0.289) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Context` connect `Input State Context` to `Input State Tests`, `Dock Tab Groups`, `Inline Flow Layout`, and 117 other communities?",
+      "why": "High betweenness centrality (0.169) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `showcase`, `Story`, `ui-icons` to the rest of the system?",
+      "why": "148 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Input State Context` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.031093544137022398 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Input State Tests` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.054265565875472994 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Dock Tab Groups` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.04702325096444583 - nodes in this community are weakly interconnected."
+    }
+  ],
+  "full_questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Pixels` connect `Editor Layout Metrics` to `Input State Context`, `Input State Tests`, `Dock Tab Groups`, `Inline Flow Layout`, `Input Element Tests`, `Text Node Construction`, `Text Selection State`, `Sankey Chart Shapes`, `Tree Navigation`, `Dock Area Tests`, `Text View State`, `Plot Appearance Scopes`, `Dock Area State`, `Editor Mode Setup`, `Toast Notifications`, `Selection Interaction Tests`, `Input Element Rendering`, `Dock State Conversion`, `Dock Layout Editing`, `Code Block Rendering`, `Grid Layout State`, `Text View Tests`, `Motion Sampling`, `Focus Trap Management`, `Text Wrapping`, `Grid Layout Rendering`, `Selection App Lifecycle`, `Cursor Selection`, `Editor Display Mapping`, `Inline Text Layout`, `Dock Pane Trees`, `Tooltip Overlays`, `Alert Dialog Controls`, `Inline Highlight Tests`, `Inline Object Rendering`, `Editor Indentation`, `Textarea Scrolling`, `Dock Panel Dragging`, `Popup Positioning`, `Resizable Panel Groups`, `Selectable Text Rendering`, `Block Surface Tests`, `Text Selection Adapters`, `Text Editor Hosting`, `Input Touch Selection`, `Positioned Element Rendering`, `Touch Selection Scopes`, `Input Presentation Contracts`, `Global State Access`, `Editor Decoration Types`, `Plot Axis Rendering`, `Sheet Dialogs`, `Scroll Mask Framing`, `Custom Block State`, `Cursor Movement`, `Selection Run Registration`, `Virtual List Components`, `Text Wrapping Tests`, `Resize Handle Tests`, `Effect Transitions`, `Placement Resolution`, `Arc Shape Rendering`, `Bar Chart Shapes`, `Text Selection Elements`, `Scrollbar Configuration`, `Touch Selection Snapshots`, `Text View Defaults`, `Virtual List Scrolling`, `Slider Value Positioning`, `Dock Layout Builders`, `Scrollbar Geometry Tests`, `Editor Host Geometry`, `Range Reveal Requests`, `Scroll Mask Tests`, `Line Chart Shapes`, `Scroll Bounce Tests`, `Scrollbar Thumb Styles`, `Scrollbar Visibility Timing`, `Dock Placement Sizing`, `Inline Selection Projection`, `Text Selection Formatting`, `Scrollbar Paint State`, `Resize Drag Handling`, `Dialog Trigger Rendering`, `Plot Path Cache`, `Grid Layout Tests`, `Editor Wrap Mapping`, `Plot Grid Rendering`, `Editor Host Drawing`, `Editor Host Inspection`, `Text Selection Keyboard Tests`, `Theme Color Tokens`, `Inline Text Measurement`, `Plot Shape Composition`, `Dock Layout Normalization`, `Geometry Test Extensions`, `Motion Reveal Rendering`, `Plot Label Rendering`, `Element Test Utilities`, `Text Block Surface Tests`, `Disabled Accessibility Wrapper`, `Slider State Updates`, `Element Snapshot Capture`, `Styled Element Utilities`, `Dock Container Planning`, `Plot Hover Tooltips`, `Inline Completion Models`, `Area Chart Shapes`, `Resizable Layout State`, `Automatic Scrolling`, `Inline Editor Lines`, `Inline Token Events`, `Resize Handle Rendering`, `Scrollbar Style Selection`, `Theme Service Selection`, `Input Tab Stops`, `Virtual List Axis Tests`, `Text Editor Sink`, `Bounce Paint State`, `Caret Reveal Geometry`, `Inline Rendering Probes`, `Popover Placement`, `Input Mode Contracts`, `Inline Token Context`, `Resizable Group Rendering`, `Scroll Mask Painting`, `Inline Virtualization Tests`, `Inline Token Presentation`, `Editor Extras Integration`, `Wrap Width Tests`, `Scrollbar Axis Layout`, `Grid Drag Metrics`, `Test Element Painting`, `Resizable State Readers`, `Element Prepaint Tests`, `Wrap Width Measurement`, `Popover Content Composition`, `Inline Selection Painting`, `Scroll Wheel Propagation`, `Interactive Scroll Events`, `Horizontal Scroll Claims`?",
+      "why": "High betweenness centrality (0.329) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `App` connect `Selection App Lifecycle` to `Input State Context`, `Input State Tests`, `Dock Tab Groups`, `Inline Flow Layout`, `Input Element Tests`, `Text Node Construction`, `Text Selection State`, `Tree Navigation`, `Dock Area Tests`, `Text View State`, `Plot Appearance Scopes`, `Dock Area State`, `Editor Mode Setup`, `Toast Notifications`, `Selection Interaction Tests`, `Input Element Rendering`, `Accordion Controls`, `Text State Tests`, `Code Block Rendering`, `Editor Layout Metrics`, `Checkbox Controls`, `Text View Rendering`, `Grid Layout State`, `Link Controls`, `Editor Search`, `Toolbar Commands`, `Motion Sampling`, `Focus Trap Management`, `Select Controls`, `Input Base Controls`, `Switch Controls`, `Toggle Controls`, `Text Wrapping`, `Dock Panel Views`, `Radio Controls`, `Grid Layout Rendering`, `Showcase Application`, `Table Components`, `Editor Display Mapping`, `Pagination Controls`, `Inline Text Layout`, `Cursor Blink Timing`, `One Time Password Input`, `Tooltip Overlays`, `Alert Dialog Controls`, `Hover Card Controls`, `Inline Highlight Tests`, `Inline Object Rendering`, `Dock Panel Dragging`, `Popup Positioning`, `Avatar Components`, `Resizable Panel Groups`, `Selectable Text Rendering`, `Text Selection Adapters`, `Text Editor Hosting`, `Combobox Controls`, `Color Picker Components`, `Positioned Element Rendering`, `Markdown Node Extensions`, `Touch Selection Scopes`, `Input Presentation Contracts`, `Global State Access`, `Plot Axis Rendering`, `Sheet Dialogs`, `Custom Block State`, `Selection Run Registration`, `Time Field State`, `Virtual List Components`, `Text Wrapping Tests`, `Application Shell Layout`, `Markdown Extension Configuration`, `Bar Chart Shapes`, `Text Selection Elements`, `Dock Panel Registry`, `Number Input Tests`, `Progress Indicators`, `Questionnaire Schema Validation`, `Text View Defaults`, `Virtual List Scrolling`, `Root Focus Tests`, `Time Field Segments`, `Color Picker State`, `Slider Value Positioning`, `Date Picker Controls`, `Dock Layout Builders`, `Animation Sequences`, `Questionnaire State`, `Theme Definition Validation`, `Scrollbar Visibility Timing`, `Collapsible Controls`, `Decoration Collection Management`, `Icon Registry Rendering`, `Root Window Rendering`, `Inline Selection Projection`, `Motion Value Animation`, `Calendar Item Rendering`, `Editor Language Types`, `Scrollbar Paint State`, `Resize Drag Handling`, `Dialog Content Components`, `Presence Transitions`, `Dialog Trigger Rendering`, `Plot Path Cache`, `Dock Test Panels`, `Editor Wrap Mapping`, `Radio Group Controls`, `Text Selection Keyboard Tests`, `Toggle Group Controls`, `Spring Motion State`, `Geometry Test Extensions`, `Motion Reveal Rendering`, `Plot Label Rendering`, `Theme Runtime Configuration`, `Tab Components`, `Parsed Text Documents`, `Dialog Window Handles`, `Disabled Accessibility Wrapper`, `Button Rendering`, `Navigation Page Rendering`, `Questionnaire Page Navigation`, `Slider State Updates`, `Tab Click Handling`, `Element Snapshot Capture`, `Color Picker Tests`, `Dock Container Planning`, `Plot Hover Tooltips`, `Completion Request Lifecycle`, `Resizable Layout State`, `Inline Editor Lines`, `Resize Handle Rendering`, `Scrollbar Style Selection`, `Theme Service Selection`, `Plot Motion Transitions`, `Showcase Section Tests`, `Scroll Bounce Rendering`, `Bounce Paint State`, `Button Interaction Tests`, `Dialog State Tests`, `Caret Reveal Geometry`, `Inline Rendering Probes`, `Text Public API`, `Inline Token Context`, `Reduced Motion Preferences`, `Resizable Group Rendering`, `Scroll Mask Painting`, `Inline Row Walking`, `Color Picker Accessibility`, `Popover Focus State`, `Wrap Width Tests`, `Textarea Token Controls`, `Popover Window Rendering`, `Text Input Tokens`, `Test Element Painting`, `Popover Content Composition`, `Decoration Normalization`, `Popover State Lifecycle`, `Calendar Activation Tests`, `Questionnaire Choice Controls`, `Questionnaire Keyboard Handling`, `Grid Layout Initialization`?",
+      "why": "High betweenness centrality (0.289) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Context` connect `Input State Context` to `Input State Tests`, `Dock Tab Groups`, `Inline Flow Layout`, `Text Selection State`, `Tree Navigation`, `Dock Area Tests`, `Text View State`, `Plot Appearance Scopes`, `Dock Area State`, `Editor Mode Setup`, `Input Element Rendering`, `Text Editing Operations`, `Accordion Controls`, `Text State Tests`, `Checkbox Controls`, `Text View Rendering`, `Grid Layout State`, `Text View Tests`, `Link Controls`, `Editor Search`, `Toolbar Commands`, `Motion Sampling`, `Select Controls`, `Switch Controls`, `Toggle Controls`, `Dock Panel Views`, `Radio Controls`, `HTML Minification`, `Grid Layout Rendering`, `Showcase Application`, `Table Components`, `Editor Diagnostics`, `Cursor Blink Timing`, `One Time Password Input`, `Tooltip Overlays`, `Alert Dialog Controls`, `Hover Card Controls`, `Editor Indentation`, `Textarea Scrolling`, `Dock Panel Dragging`, `Input Layout Modes`, `Popup Positioning`, `Avatar Components`, `Resizable Panel Groups`, `Selectable Text Rendering`, `Text Editor Hosting`, `Input Touch Selection`, `Combobox Controls`, `Editor Decoration Types`, `Sheet Dialogs`, `Scroll Mask Framing`, `Cursor Movement`, `Time Field State`, `Virtual List Components`, `Editor Completion Overlays`, `Text Selection Elements`, `Number Input Tests`, `Questionnaire Schema Validation`, `Calendar Date Matching`, `Root Focus Tests`, `Color Picker State`, `Slider Value Positioning`, `Questionnaire State`, `Scrollbar Thumb Styles`, `Text Reveal Tests`, `Collapsible Controls`, `Root Window Rendering`, `Calendar Item Rendering`, `Navigation Stack State`, `Language Server Edits`, `Text Selection Formatting`, `Resize Drag Handling`, `Dialog Trigger Rendering`, `Questionnaire Choice Tests`, `Dock Test Panels`, `Disabled Accessibility Tests`, `Calendar Event State`, `Semantic Token Decoding`, `Text Block Surface Tests`, `Language Server Definitions`, `Button Rendering`, `Navigation Page Rendering`, `Questionnaire Page Navigation`, `Slider State Updates`, `Tab Click Handling`, `Styled Element Utilities`, `Color Picker Tests`, `Completion Request Lifecycle`, `Resizable Layout State`, `Automatic Scrolling`, `Text Parse Updates`, `Navigation Stack Tests`, `Resizable State Tests`, `Layout Composition Rendering`, `Scroll Bounce Rendering`, `Rendered Highlight Queries`, `Time Field Editing`, `Caret Reveal Geometry`, `Inline Rendering Probes`, `Inline Token Replacement`, `Inline Virtualization Tests`, `Color Picker Accessibility`, `Resizable Layout Helpers`, `External Text Hosting`, `Popover Window Rendering`, `Document Color Responses`, `Grid Drag Metrics`, `Input Word Selection`, `Element Prepaint Tests`, `Language Server Actions`, `Popover Content Composition`, `Popover State Lifecycle`, `Theme Playground Example`, `Calendar Activation Tests`, `Scroll Wheel Propagation`, `HTML Paragraph Tests`, `Minimal Application Example`, `Editor Language Setup`, `Language Server Hover`, `Block Surface Roots`?",
+      "why": "High betweenness centrality (0.169) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `showcase`, `Story`, `ui-icons` to the rest of the system?",
+      "why": "148 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Input State Context` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.031093544137022398 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Input State Tests` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.054265565875472994 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Dock Tab Groups` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.04702325096444583 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

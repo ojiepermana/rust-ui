@@ -1,0 +1,19 @@
+[package]
+name = "ui-icons"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Typed, validated SVG icon registration for GPUI Kit."
+readme = "README.md"
+keywords = ["gpui", "desktop", "ui"]
+categories = ["gui"]
+
+[lints]
+workspace = true
+
+[dependencies]
+gpui-kit.workspace = true
+thiserror.workspace = true
+roxmltree.workspace = true

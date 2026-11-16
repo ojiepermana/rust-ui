@@ -1,0 +1,21 @@
+[package]
+name = "ui-theme"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Validated application themes projected onto GPUI Kit."
+readme = "README.md"
+keywords = ["gpui", "desktop", "ui"]
+categories = ["gui"]
+
+[lints]
+workspace = true
+
+[dependencies]
+ui-core.workspace = true
+gpui-kit.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true

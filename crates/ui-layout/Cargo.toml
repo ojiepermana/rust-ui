@@ -1,0 +1,21 @@
+[package]
+name = "ui-layout"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Composable native desktop application layouts."
+readme = "README.md"
+keywords = ["gpui", "desktop", "ui"]
+categories = ["gui"]
+
+[lints]
+workspace = true
+
+[dependencies]
+gpui-kit.workspace = true
+ui-components.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+serde_json.workspace = true

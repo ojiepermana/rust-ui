@@ -1,0 +1,4 @@
+[alias]
+showcase = "run -p showcase"
+examples = "build -p minimal-app -p dashboard-app -p theme-playground"
+verify = "test --workspace --locked"
