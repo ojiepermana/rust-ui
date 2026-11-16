@@ -2,7 +2,7 @@
 resolver = "3"
 members = ["crates/*", "apps/showcase", "examples/*"]
 default-members = ["apps/showcase"]
-exclude = ["vendor/gpui-base"]
+exclude = ["vendor/gpui-base", "vendor/accesskit_macos"]
 
 [workspace.package]
 version = "0.1.0"
@@ -44,3 +44,6 @@ incremental = false
 # Temporary behavior fix for coalesced native divider input; see vendor/gpui-base/PATCHES.md.
 [patch.crates-io]
 gpui-base = { path = "vendor/gpui-base" }
+
+# Same-version macOS metadata bridge fix, see vendor/accesskit_macos/PATCHES.md.
+accesskit_macos = { path = "vendor/accesskit_macos" }

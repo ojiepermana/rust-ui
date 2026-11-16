@@ -29,7 +29,7 @@ You can compose five native navigation patterns from one validated model and con
 
 Spec [0002](../../specs/_root/0002-native-navigation/index.md).
 
-Build and tests passed locally. Verify remains open for the native selected/expanded bridge contract and unchecked scenarios in the [verification ledger](../../agent-team/checkpoints/navigation.md).
+Build and tests passed locally. The native selected/expanded bridge was repaired on the same version and separately reverified. Verify remains open for other unchecked scenarios in the [verification ledger](../../agent-team/checkpoints/navigation.md).
 
 The user authorized completion, commit and push of the working implementation.
 The [delivery follow-up](../../agent-team/checkpoints/navigation-delivery.md)

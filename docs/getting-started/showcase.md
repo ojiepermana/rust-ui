@@ -6,14 +6,15 @@ Add the local facade to your application's Cargo.toml:
 [dependencies]
 ui-kit = { path = "../gpui/crates/ui-kit" }
 
-# Required temporarily to carry the native coalesced-drag fix into a consumer workspace.
+# Temporary same-version compatibility fixes for divider input and macOS metadata.
 [patch.crates-io]
 gpui-base = { path = "../gpui/vendor/gpui-base" }
+accesskit_macos = { path = "../gpui/vendor/accesskit_macos" }
 ```
 
 Import `ui_kit::prelude::*` and `ui_kit::gpui`. When declaring GPUI actions through the facade, also import `use ui_kit::gpui as gpui_kit;`, which the upstream derive macro resolves by name. Initialize `gpui::init(cx)` and `ThemeService::init(cx)` before opening a window with `gpui::open_window`. Register native appearance observation with `ThemeService::sync_system(window, cx)`.
 
-Cargo patches are not transitive. The temporary override preserves the native divider fix in consuming workspaces until an upstream fixed release is selected. It changes one upstream drag-start callback and reuses the original sizing engine.
+Cargo patches are not transitive. The temporary overrides preserve the native divider fix and macOS selected/expanded metadata in consuming workspaces. Versions stay GPUI Kit 0.9.1, GPUI 0.3.12 and AccessKit macOS 0.26.3. They patch one drag-start callback and the native accessibility adapter, without replacing component rendering.
 
 ## Components
 

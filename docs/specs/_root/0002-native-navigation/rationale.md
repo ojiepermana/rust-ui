@@ -74,3 +74,11 @@ Isi desain dikonfirmasi pengguna pada 16 November 2026. Pemeriksaan silang GPT-6
 Spec ini berasal dari pembacaan source dan keputusan pengguna, belum dari implementasi baru. Tes pure membuktikan validasi/proyeksi, tes GPUI membuktikan interaksi dan fokus sintetis, dan jendela native membuktikan perilaku pada platform yang diamati. Pembaca layar memerlukan bukti sendiri. Keberadaan aksesibilitas dalam tree tidak membuktikan urutan pembacaan VoiceOver atau teknologi bantu lain.
 
 Tidak ada seksi References tersendiri sesuai pilihan pengguna. Penalaran dan batas sumber yang dipin tetap dicatat di atas.
+
+## Amendemen bridge macOS, 16 November 2026
+
+Bukti awal menunjukkan selected hilang pada Button karena adapter membatasi getter pada role item. Expanded belum dipetakan dari properti opsional AccessKit. Regresi yang memanggil selector Objective-C pada node platform asli gagal untuk selected, expanded, dan notifikasi state, sementara perilaku item pilihan dan Tab lama tetap lulus.
+
+Pengguna kemudian secara eksplisit mengizinkan perbaikan bridge tanpa upgrade. Opsi memperbaiki adapter pada versi yang sama dipilih karena pemilik masalah jelas dan perubahan produksinya terbatas pada dua file. Upgrade bertentangan dengan permintaan pengguna. Mengganti renderer atau memalsukan role menjadi menu/toggle juga bertentangan dengan kontrak komponen. Patch lokal versi 0.26.3 mempertahankan API/runtime, menyediakan bukti sebelum/sesudah serta provenance, dan dapat dilepas setelah upstream setara diverifikasi. Tidak ada perubahan model domain atau storage aplikasi.
+
+Getter selected baru hanya memperluas Button/DefaultButton yang benar benar memiliki nilai selected, tanpa menambah setter pemilihan atau AXPick. Getter expanded membaca nilai opsional dan tidak mengarang atribut bagi Button biasa. Jalur event yang sama menggabungkan notifikasi state agar pembaruan koheren tidak membuat duplikasi. Pemeriksaan native dan batas alat dicatat terpisah dari pembacaan teknologi bantu. Pembaruan ini dikerjakan inline melalui architect sesuai permintaan eksplisit dan kebijakan keputusan auto; bukan cross model review.

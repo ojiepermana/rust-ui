@@ -48,3 +48,5 @@ A temporary crates.io source override carries one functional GPUI Base 0.9.1 dra
 ## Native navigation
 
 `ui-navigation` owns validated item trees, application supplied presentation, request events and retained instance focus/scroll handles. It composes GPUI Kit Button, Collapsible, SidebarToggleButton, Badge/Tag and controlled Popover. It depends on ui-components, ui-icons, ui-theme and the pinned kit, with no dependency to or from ui-layout. ui-kit re-exports it as `navigation`. Applications retain both event and observer subscriptions, decide selection and popup policy, and restore focus before removing a region. The Showcase story and navigation-app consumer use only the facade.
+
+The macOS metadata bridge additionally uses a documented same-version AccessKit adapter patch, authorized after the navigation implementation. It maps explicit selected/expanded fields to native getters and state notifications without changing rendering or Button roles. See vendor/accesskit_macos/PATCHES.md before changing that override.

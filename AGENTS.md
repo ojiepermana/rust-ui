@@ -5,6 +5,8 @@ Native Rust workspace. Read docs/architecture/README.md before changing crate bo
 ## Build and validation
 Run cargo fmt --all --check, cargo clippy --workspace --all-targets --locked -- -D warnings, cargo test --workspace --locked, cargo build --workspace --locked and cargo doc --workspace --no-deps --locked. scripts/validate-dependencies.py checks local sources, version alternatives and runtime alignment. Run cargo run -p showcase for the native app. See docs/architecture/validation.md for evidence boundaries.
 
+On macOS also run `cargo test -p accesskit_macos --test native_bridge --locked` for the real Objective-C bridge regression. The same-version vendor override is documented in vendor/accesskit_macos/PATCHES.md.
+
 ## Ownership
 GPUI Kit owns standard components and rendering. ui-components re-exports its catalog. ui-theme owns configuration, validation and token projection. ui-icons owns SVG registration. ui-layout owns reusable compositions. ui-kit only assembles the public API. Showcase holds demo state and consumes local crates.
 

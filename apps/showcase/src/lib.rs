@@ -960,7 +960,8 @@ impl Showcase {
                         cx.write_to_clipboard(ClipboardItem::new_string(
                             concat!(
                                 "[dependencies]\nui-kit = { path = \"../gpui/crates/ui-kit\" }\n\n",
-                                "[patch.crates-io]\ngpui-base = { path = \"../gpui/vendor/gpui-base\" }\n"
+                                "[patch.crates-io]\ngpui-base = { path = \"../gpui/vendor/gpui-base\" }\n",
+                                "accesskit_macos = { path = \"../gpui/vendor/accesskit_macos\" }\n"
                             ).into(),
                         ))
                     }),

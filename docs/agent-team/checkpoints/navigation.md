@@ -1,3 +1,5 @@
+> Follow-up, 2026-11-16: the user authorized a same-version macOS bridge patch. The selected/expanded adapter limitation below is resolved by the [targeted repair](macos-bridge.md). Native app selected and native ABI expanded evidence are recorded separately there. Other unchecked scenarios remain open.
+
 # Native navigation validation
 
 Date: 2026-11-16, Asia/Jakarta. Implementation is complete; spec 0002 remains In Progress because native accessibility acceptance is blocked and the exhaustive checklist is not fully executed. No navigation commit, push, publication or release was performed.
@@ -35,7 +37,7 @@ A real native pointer-focus bug was fixed after initial checks: Escape restored 
 
 Native bundle identities and SHA256 records are in /tmp/gpui-navigation-validation/native-bundle.json. Final current-checkout executable SHA256371a1cd086a88692b698f8a0593c990bd4037e1d8c9293939da48605fd6355df. Previous isolated focus-fix bundle SHA256ddc263755b99d835cd0f4e417b879ad672866d0bf48d53265d936e610bbf7375. Initial screenshots with clipping/focus defects are not counted as passing final evidence.
 
-## Native accessibility blocker
+## Initial native accessibility blocker (resolved by follow-up)
 
 Expected: ordinary Button role, selected only on chosen leaf, expanded on branch/popup trigger, without toggle substitution. GPUI metadata tests assert these fields and no toggled state. Native CUA exposed names, IDs, Button/Heading/Dialog roles and disabled controls, including Inbox, 120 unread messages, but did not expose selected/expanded on these Buttons.
 

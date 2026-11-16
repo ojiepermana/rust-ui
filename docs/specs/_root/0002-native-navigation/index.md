@@ -33,7 +33,7 @@ Tambahkan crate Rust `ui-navigation` untuk sidebar, dockbar, minidock, navbar, d
 - **AC-13**: Penutupan branch/panel, penghapusan item terfokus, pergantian pola, penyembunyian region akibat resize, dan pelepasan view tidak meninggalkan fokus pada elemen yang hilang. Fokus slot dan popup termasuk cakupan instance. Fokus pindah ke pemicu yang masih ada, ancestor yang sesuai, atau fallback milik aplikasi. Pemicu popup yang ikut hilang tidak menjadi target pemulihan. Shortcut shell tetap bekerja setelah transisi tersebut.
 - **AC-14**: Kontrol tujuan dan disclosure dapat dicapai dengan Tab/Shift+Tab dan diaktifkan dengan Enter/Space melalui Button upstream. Disabled tidak menghasilkan event. Escape menutup lapisan navigasi teratas yang relevan tanpa mengambil Escape dari dialog atau overlay lain yang lebih atas.
 - **AC-15**: Contoh consumer yang hanya bergantung pada `ui-kit` dapat membangun model, menyimpan entity/subscription, menangani event, dan menyusun navigasi dengan konten aplikasi. API publik terdokumentasi, termasuk kontrak fokus dan setter di luar render.
-- **AC-16**: API `AppShell`, `ShellConfig`, helper layout, `SplitWorkspace`, dan `TabbedWorkspace` yang ada tetap kompatibel. Tujuh demo Layouts yang ada tetap berfungsi. Tidak ada upgrade runtime atau perubahan vendor untuk pekerjaan ini.
+- **AC-16**: API `AppShell`, `ShellConfig`, helper layout, `SplitWorkspace`, dan `TabbedWorkspace` yang ada tetap kompatibel. Tujuh demo Layouts yang ada tetap berfungsi. Tidak ada upgrade runtime atau perubahan pada vendor GPUI Base untuk pekerjaan ini. Pengecualian yang secara eksplisit diizinkan pengguna pada 16 November 2026 adalah patch metadata pada `accesskit_macos` versi tetap 0.26.3, dengan provenance, pemeriksaan integritas, dan regresi ABI native; patch ini tidak mengganti renderer atau role Button.
 - **AC-17**: Showcase memiliki galeri Navigation dengan kelima pola, data nyata yang sama sejauh kontrak polanya mengizinkan, dan konten tujuan yang berubah melalui handler aplikasi. Galeri membuktikan empty, disabled, nested, collapsed, ikon, badge, panel, serta pembaruan data saat berjalan.
 - **AC-18**: Seluruh perintah validasi workspace dan pemeriksaan dependensi lulus setelah implementasi. Bukti pure test, interaksi headless GPUI, jendela native, dan pembaca layar dilaporkan terpisah per platform, tanpa memperluas klaim dari satu jenis bukti ke jenis lainnya.
 
@@ -60,6 +60,12 @@ Panduan implementasi: Coding Guides dan Design Guides GPUI Kit pada commit `39ab
 | Aplikasi / Showcase | Entity yang dipertahankan, subscription, kebijakan seleksi/open, konten tujuan, shortcut aplikasi, persistence |
 
 Dependensi baru yang diizinkan: `ui-navigation -> ui-components, ui-icons, ui-theme, gpui-kit`; `ui-kit -> ui-navigation`. `ui-layout` dan `ui-navigation` tidak saling bergantung. Validator menambahkan crate baru ke himpunan library wajib dan daftar batas yang benar, sehingga metadata, sumber lokal, alternatif versi, dan siklus turut diperiksa untuknya. Showcase tetap memiliki satu dependensi library internal, yaitu `ui-kit`.
+
+### Amendemen bridge macOS, 16 November 2026
+
+Pengguna secara eksplisit meminta perbaikan bridge selected/expanded tanpa upgrade runtime dan verifikasi ulang. Perbaikan dilakukan pada adapter pemilik pemetaan, `accesskit_macos` 0.26.3, melalui override Cargo lokal yang terdokumentasi. GPUI Kit 0.9.1 dan GPUI 0.3.12 tetap sama. Selected pada Button merupakan metadata baca saja dari snapshot aplikasi, bukan toggle atau perintah pemilihan baru. Expanded hanya diekspos bila nilainya disuplai. Perubahan state memakai satu notifikasi native per node, sedangkan snapshot sama tidak membuat notifikasi baru. Kontrak action item pilihan dan nilai Tab yang ada harus tetap berlaku.
+
+Regresi utama menjalankan getter Objective-C dan event generator produksi pada main thread macOS. Bukti ABI, tree aplikasi, dan output pembaca layar tetap dipisahkan. Patch, cara consumer memasang override, dan kriteria penghapusan tercatat di `vendor/accesskit_macos/PATCHES.md`. Amendemen ini mempertahankan status lifecycle fitur, bukan menerima seluruh checklist yang belum diuji.
 
 ## Feature design
 

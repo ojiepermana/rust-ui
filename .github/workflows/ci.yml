@@ -32,6 +32,9 @@ jobs:
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
       - name: Unit, consumer and headless native event tests
         run: cargo test --workspace --locked
+      - name: macOS native accessibility bridge ABI regressions
+        if: runner.os == 'macOS'
+        run: cargo test -p accesskit_macos --test native_bridge --locked
       - name: Build all applications and libraries
         run: cargo build --workspace --locked
       - name: API documentation

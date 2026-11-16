@@ -73,3 +73,26 @@ assert set(integrity["patched_files"]) == {
     "src/resizable/panel.rs", "src/text_selection.rs",
 }
 print("Verified pinned GPUI Base compatibility patch and original source integrity.")
+
+# Same-version native metadata bridge. Only the explicit platform adapter is replaced.
+mac = [p for p in metadata["packages"] if p["name"] == "accesskit_macos"]
+assert len(mac) == 1 and mac[0]["version"] == "0.26.3", "macOS bridge version drift"
+mac_vendor = root / "vendor" / "accesskit_macos"
+assert pathlib.Path(mac[0]["manifest_path"]).resolve() == (mac_vendor / "Cargo.toml").resolve()
+mac_integrity = json.loads((mac_vendor / "source-integrity.json").read_text())
+assert mac_integrity["archive_sha256"] == "ce02dc63b43f0c9296af9ac946312a2dc8814427d7a64d2d600971dac55b6076"
+assert set(mac_integrity["patched_files"]) == {"Cargo.toml", "src/node.rs", "src/event.rs"}
+assert set(mac_integrity["added_files"]) == {
+    "LICENSE-APACHE", "LICENSE-MIT", "LICENSE.chromium", "tests/native_bridge.rs",
+}
+for path, original in mac_integrity["original_files"].items():
+    expected = mac_integrity["patched_files"].get(path, original)
+    assert hashlib.sha256((mac_vendor / path).read_bytes()).hexdigest() == expected, f"unexpected macOS bridge change: {path}"
+for path, expected in mac_integrity["added_files"].items():
+    assert hashlib.sha256((mac_vendor / path).read_bytes()).hexdigest() == expected, f"unexpected bridge test/license change: {path}"
+known = set(mac_integrity["original_files"]) | set(mac_integrity["added_files"]) | {
+    "source-integrity.json", "PATCHES.md", "native-metadata.patch",
+}
+actual = {path.relative_to(mac_vendor).as_posix() for path in mac_vendor.rglob("*") if path.is_file()}
+assert actual == known, f"unexpected macOS vendor inventory: {actual ^ known}"
+print("Verified same-version AccessKit macOS bridge patch, regression and source integrity.")

@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "kind": "agent_flow_run_state",
-  "revision": 9,
+  "revision": 11,
   "run_id": "native-navigation-20261116",
   "objective": "Implement spec 0002 native navigation, all five patterns, facade consumer and Showcase, with honest verification.",
   "repository": "/Users/ojiepermana/Development/ojiepermana/gpui",
@@ -307,8 +307,8 @@
       "source": "user autodecision"
     }
   ],
-  "status": "BLOCKED",
-  "updated_at": "2026-11-16T15:58:36.646650+07:00",
+  "status": "IN_PROGRESS",
+  "updated_at": "2026-11-16T16:45:44.825085+07:00",
   "prior_run_ref": "runs/native-ui-foundation-20261116-verify.json",
   "integration_checkpoint": {
     "artifact": "/tmp/gpui-navigation-focus-final.tar",
@@ -324,7 +324,7 @@
     ],
     "reason": "Other task changed vendor and may share Showcase bundle during execution; preserve unrelated work and validate only navigation target"
   },
-  "verification_verdict": "Implementation and local workspace gates passed; full native accessibility acceptance blocked by pinned macOS Button selected/expanded bridge. Other unexecuted checklist cases remain explicit.",
+  "verification_verdict": "Bridge follow-up PASS for targeted fix: native selected/expanded ABI and live app selected state. Overall feature remains in progress for previously unchecked scenarios; VoiceOver not run.",
   "checkout_head": "430807287b0a98230ae687d911e21af8bf899aff",
   "checks": {
     "checkout": "/Users/ojiepermana/Development/ojiepermana/gpui",
@@ -420,14 +420,9 @@
   },
   "outstanding": [
     {
-      "criterion": "AC-12, AC-14",
-      "status": "blocked",
-      "detail": "Pinned macOS AccessKit bridge restricts selected to item-like roles and does not map expanded for these Buttons. GPUI metadata is asserted in headless tests; actual native names/roles/disabled are observed. No vendor/runtime change authorized by spec."
-    },
-    {
-      "criterion": "AC-18",
+      "criterion": "remaining spec0002 verification",
       "status": "not run",
-      "detail": "Windows/Linux, VoiceOver, physical display/DPI and full native density/rem/reduced-motion matrix. Remaining unchecked verify.md steps are not claimed passed."
+      "detail": "Other unchecked verify.md scenarios, full native density/rem/reduced-motion and long-scroll stress, other platforms, VoiceOver. Native AXExpanded app Inspector capture was not obtained; live getter values are verified by main-thread native ABI regression."
     }
   ],
   "skipped_stages": [
@@ -493,5 +488,97 @@
     "native_showcase": "Five patterns and selected focus, dismissal, data and theme transitions observed on macOS 27.0.1 arm64.",
     "native_acceptance": "OPEN: pinned selected/expanded bridge boundary and unchecked exhaustive scenarios remain recorded.",
     "branch": "main"
-  }
+  },
+  "followups": [
+    {
+      "id": "macos-selected-expanded-bridge",
+      "authority": "User explicitly requested fixing macOS selected/expanded bridge without runtime upgrade and reverifying.",
+      "execution_placement": "inline",
+      "workflow_skill": "debug",
+      "status": "COMPLETED",
+      "requested_versions": {
+        "gpui-kit": "0.9.1",
+        "gpui-pre": "0.3.12",
+        "accesskit_macos": "0.26.3"
+      },
+      "owned_paths": [
+        "vendor/accesskit_macos",
+        "Cargo.toml",
+        "Cargo.lock",
+        "scripts/validate-dependencies.py",
+        ".github/workflows/ci.yml"
+      ],
+      "checkpoint": "checkpoints/macos-bridge.md",
+      "reproduction": "Native ABI regression: 3 of6 cases fail before production patch and all6 pass after initial patch.",
+      "result": "same-version macOS bridge fixed and targeted re-verification passed",
+      "checks": [
+        {
+          "command": "cargo fmt --all --check",
+          "exit_code": 0,
+          "seconds": 0.33,
+          "log": "/tmp/gpui-macos-bridge-validation/01-fmt.log"
+        },
+        {
+          "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "exit_code": 0,
+          "seconds": 3.24,
+          "log": "/tmp/gpui-macos-bridge-validation/02-clippy.log"
+        },
+        {
+          "command": "cargo test --workspace --locked",
+          "exit_code": 0,
+          "seconds": 25.19,
+          "log": "/tmp/gpui-macos-bridge-validation/03-test.log"
+        },
+        {
+          "command": "cargo test -p accesskit_macos --test native_bridge --locked",
+          "exit_code": 0,
+          "seconds": 0.29,
+          "log": "/tmp/gpui-macos-bridge-validation/04-native-abi.log"
+        },
+        {
+          "command": "cargo clippy -p accesskit_macos --test native_bridge --locked -- -D warnings",
+          "exit_code": 0,
+          "seconds": 0.66,
+          "log": "/tmp/gpui-macos-bridge-validation/05-native-clippy.log"
+        },
+        {
+          "command": "cargo build --workspace --locked",
+          "exit_code": 0,
+          "seconds": 2.73,
+          "log": "/tmp/gpui-macos-bridge-validation/06-build.log"
+        },
+        {
+          "command": "cargo doc --workspace --no-deps --locked",
+          "exit_code": 0,
+          "seconds": 44.49,
+          "log": "/tmp/gpui-macos-bridge-validation/07-doc.log"
+        },
+        {
+          "command": "python3 scripts/validate-dependencies.py",
+          "exit_code": 0,
+          "seconds": 0.92,
+          "log": "/tmp/gpui-macos-bridge-validation/08-dependencies.log"
+        }
+      ],
+      "negative_control": "3 of6 native cases fail against original production node.rs/event.rs with the exact final regression source; all6 pass with the patch.",
+      "native_observation": "App AX selected moves Inbox to Projects; Work remains unselected. Native pointer/Enter/Space/Escape/Close behavior retained. Expanded getter/state transitions pass native Objective-C ABI tests; CUA summary does not display AXExpanded.",
+      "native_bundle": {
+        "bundle": "/tmp/gpui-macos-bridge-validation/BridgeVerification.app",
+        "executable_sha256": "f89abebbcb7387159a7fff715ec9c1a4d0ce29afddbd14e089030fbac60b8c07",
+        "bridge": "accesskit_macos0.26.3 local metadata patch",
+        "runtime": "GPUI Kit0.9.1 / GPUI0.3.12"
+      },
+      "completed_at": "2026-11-16T16:45:44.825085+07:00",
+      "workers": "none, focused debug and artifact maintenance executed inline",
+      "source_base": "94f1e9e4813df265e385fbcc2def62fd5b482c27"
+    }
+  ],
+  "resolved": [
+    {
+      "criterion": "AC-12/AC-14 macOS bridge limitation",
+      "resolved_by": "macos-selected-expanded-bridge",
+      "detail": "Explicit selected/expanded fields mapped at unchanged AccessKit macOS0.26.3; no role/toggle substitution or GPUI upgrade. Evidence level for selected versus expanded is separated in checkpoint."
+    }
+  ]
 }

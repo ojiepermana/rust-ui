@@ -1,6 +1,6 @@
 # Verify: navigasi native
 
-Implementasi dan 45 kasus tes/doctest workspace lulus pada 16 November 2026. Centang hanya menyatakan langkah yang telah dibuktikan; langkah lain tetap terbuka. Bukti rinci dan batas native ada di [checkpoint navigasi](../../../agent-team/checkpoints/navigation.md). AC-12/AC-14 belum diterima karena bridge macOS selected/expanded.
+Implementasi dan 45 kasus tes/doctest workspace lulus pada 16 November 2026. Centang hanya menyatakan langkah yang telah dibuktikan; langkah lain tetap terbuka. Bukti rinci dan batas native ada di [checkpoint navigasi](../../../agent-team/checkpoints/navigation.md). Follow-up bridge macOS selected/expanded telah diperbaiki pada versi yang sama; enam regresi ABI native lulus dan selected terlihat di tree aplikasi. Lihat [hasil bridge](../../../agent-team/checkpoints/macos-bridge.md) untuk batas bukti expanded dan VoiceOver.
 
 ## Kontrak pure dan facade
 
@@ -65,3 +65,13 @@ cargo run -p showcase --locked
 ```
 
 Catat hasil setiap perintah, cakupan tes yang dijalankan, dan gap platform. Tidak ada commit, push, publikasi, atau rilis yang tersirat dari kelulusan gate ini.
+
+## Follow-up bridge macOS, 16 November 2026
+
+- [x] Regresi native memanggil selector Objective-C produksi pada main thread. Final test source gagal tiga dari enam kasus terhadap source produksi asli, lalu lulus enam dari enam dengan patch versi 0.26.3.
+- [x] Selected berpindah dari Inbox ke Projects pada tree aplikasi native, ancestor tetap tidak terpilih, role tetap Button dan disabled tetap tersedia.
+- [x] Getter expanded dan perubahan true/false, atribut kosong, removal/role changes, nilai Tab, action item lama serta deduplikasi notifikasi diuji pada ABI native.
+- [x] Pointer, Escape, Enter, Space dan tombol tutup popup dioperasikan ulang pada aplikasi dengan patch.
+- [x] Seluruh gate workspace, 45 kasus workspace dan enam kasus ABI terpisah lulus tanpa upgrade runtime.
+- [ ] Capture AXExpanded dari aplikasi melalui Inspector belum diperoleh karena alat point-to-inspect tidak menangkap target lewat kontrol CUA yang tersedia. Nilai getter native sudah diuji langsung; capture ini tidak diklaim selesai.
+- [ ] Output VoiceOver tetap belum diuji.
