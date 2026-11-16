@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "timestamp": "2026-11-16T15:07:35.701899+07:00",
+  "timestamp": "2026-11-16T15:11:47.359708+07:00",
   "runtime_ref": "state.json",
   "leader": {
     "selection": null,
@@ -20,7 +20,7 @@
       "ultra"
     ],
     "evidence": "Live spawn schema",
-    "access": "advertised; not yet dispatched"
+    "access": "Two dispatches accepted; observed execution model metadata unavailable"
   },
   "substitutions": []
 }

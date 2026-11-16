@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "kind": "agent_flow_run_state",
-  "revision": 1,
+  "revision": 3,
   "run_id": "native-ui-foundation-20261116-verify",
   "objective": "Verify the existing Native UI foundation against AC-1 through AC-8 without expanding implementation scope.",
   "repository": "/Users/ojiepermana/Development/ojiepermana/gpui",
@@ -35,26 +35,32 @@
     {
       "agent_id": "contracts",
       "workflow_skill": "check verify",
-      "runtime_worker_id": null,
-      "native_runtime_id_kind": null,
+      "runtime_worker_id": "/root/contracts",
+      "native_runtime_id_kind": "collaboration canonical task path",
       "runtime_kind": "codex",
       "current_task_id": "contracts",
-      "status": "ASSIGNED",
+      "status": "COMPLETED",
       "context_provenance": "fresh",
       "owned_paths": [],
-      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md"
+      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
+      "checkpoint": "checkpoints/contracts.md",
+      "next_action": null,
+      "context_evidence": "spawn_agent invoked with fork_turns none; tool returned canonical child path. No mapping to app chat ID is claimed."
     },
     {
       "agent_id": "showcase",
       "workflow_skill": "check verify",
-      "runtime_worker_id": null,
-      "native_runtime_id_kind": null,
+      "runtime_worker_id": "/root/showcase",
+      "native_runtime_id_kind": "collaboration canonical task path",
       "runtime_kind": "codex",
       "current_task_id": "showcase",
-      "status": "ASSIGNED",
+      "status": "COMPLETED",
       "context_provenance": "fresh",
       "owned_paths": [],
-      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md"
+      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
+      "checkpoint": "checkpoints/showcase.md",
+      "next_action": null,
+      "context_evidence": "spawn_agent invoked with fork_turns none; tool returned canonical child path. No mapping to app chat ID is claimed."
     },
     {
       "agent_id": "commands",
@@ -63,10 +69,12 @@
       "native_runtime_id_kind": null,
       "runtime_kind": "codex",
       "current_task_id": "commands",
-      "status": "RUNNING",
+      "status": "COMPLETED",
       "context_provenance": "inline",
       "owned_paths": [],
-      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md"
+      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
+      "checkpoint": "checkpoints/commands.md",
+      "next_action": null
     },
     {
       "agent_id": "native",
@@ -75,10 +83,12 @@
       "native_runtime_id_kind": null,
       "runtime_kind": "codex",
       "current_task_id": "native",
-      "status": "RUNNING",
+      "status": "COMPLETED",
       "context_provenance": "inline",
       "owned_paths": [],
-      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md"
+      "active_spec": "/Users/ojiepermana/Development/ojiepermana/gpui/docs/specs/_root/0001-native-ui-foundation/index.md",
+      "checkpoint": "checkpoints/native.md",
+      "next_action": null
     }
   ],
   "tasks": [
@@ -103,7 +113,7 @@
       "owned_paths": [],
       "decision_mode": "auto",
       "decision_policy_source": "skill_default",
-      "status": "ASSIGNED",
+      "status": "COMPLETED",
       "model": {
         "source": "routine",
         "family": "terra",
@@ -115,11 +125,14 @@
         "configured": null,
         "observed": null,
         "evidence": [
-          "Live collaboration.spawn_agent schema lists gpt-6.1-terra and medium effort"
+          "Live collaboration.spawn_agent schema lists gpt-6.1-terra and medium effort",
+          "spawn_agent accepted explicit selection and medium effort, returning /root/contracts; no observed model execution metadata was supplied"
         ],
         "rationale": "Bounded verification evidence collection",
         "substitution": null
-      }
+      },
+      "checkpoint": "checkpoints/contracts.md",
+      "next_action": null
     },
     {
       "task_id": "showcase",
@@ -139,7 +152,7 @@
       "owned_paths": [],
       "decision_mode": "auto",
       "decision_policy_source": "skill_default",
-      "status": "ASSIGNED",
+      "status": "COMPLETED",
       "model": {
         "source": "routine",
         "family": "terra",
@@ -151,11 +164,14 @@
         "configured": null,
         "observed": null,
         "evidence": [
-          "Live collaboration.spawn_agent schema lists gpt-6.1-terra and medium effort"
+          "Live collaboration.spawn_agent schema lists gpt-6.1-terra and medium effort",
+          "spawn_agent accepted explicit selection and medium effort, returning /root/showcase; no observed model execution metadata was supplied"
         ],
         "rationale": "Bounded verification evidence collection",
         "substitution": null
-      }
+      },
+      "checkpoint": "checkpoints/showcase.md",
+      "next_action": null
     },
     {
       "task_id": "commands",
@@ -177,7 +193,7 @@
       "owned_paths": [],
       "decision_mode": "auto",
       "decision_policy_source": "skill_default",
-      "status": "RUNNING",
+      "status": "COMPLETED",
       "model": {
         "source": null,
         "family": null,
@@ -191,7 +207,9 @@
         "evidence": [],
         "rationale": "Leader inline execution",
         "substitution": null
-      }
+      },
+      "checkpoint": "checkpoints/commands.md",
+      "next_action": null
     },
     {
       "task_id": "native",
@@ -214,7 +232,7 @@
       "owned_paths": [],
       "decision_mode": "auto",
       "decision_policy_source": "skill_default",
-      "status": "RUNNING",
+      "status": "COMPLETED",
       "model": {
         "source": null,
         "family": null,
@@ -228,7 +246,9 @@
         "evidence": [],
         "rationale": "Leader inline execution",
         "substitution": null
-      }
+      },
+      "checkpoint": "checkpoints/native.md",
+      "next_action": null
     }
   ],
   "sessions": [],
@@ -244,9 +264,117 @@
     }
   ],
   "outstanding": [
-    "Native app verification pending",
-    "No initial Git commit exists; implementation worktrees unavailable from current files",
-    "Other platform and screen reader checks are outside locally available evidence"
+    {
+      "criterion": "AC-8",
+      "status": "not run",
+      "detail": "Windows, Linux, Intel macOS, physical multi-display DPI, IME and screen reader behavior remain unverified. Accessibility labels observed are not certification."
+    }
   ],
-  "updated_at": "2026-11-16T15:07:35.701899+07:00"
+  "updated_at": "2026-11-16T15:15:20.820177+07:00",
+  "status": "COMPLETED",
+  "verification_verdict": "PASS: declared local macOS foundation baseline, including live OS appearance changes; other platform and accessibility limits remain explicit",
+  "skipped_stages": [
+    {
+      "stage": "scope",
+      "reason": "Verification only, no scope artifact exists and no product scope change was requested."
+    },
+    {
+      "stage": "audit",
+      "reason": "Curated AGENTS.md already exists; no context bootstrap requested."
+    },
+    {
+      "stage": "architect",
+      "reason": "Accepted spec remains in force; no new design decision owed."
+    },
+    {
+      "stage": "develop",
+      "reason": "Existing foundation inspected, no source edits needed."
+    },
+    {
+      "stage": "test",
+      "reason": "Existing required suite executed; no test writing requested."
+    },
+    {
+      "stage": "check review",
+      "reason": "Verification selected, no independent review requested or claimed."
+    },
+    {
+      "stage": "document",
+      "reason": "No PR or release prose change requested."
+    },
+    {
+      "stage": "sync",
+      "reason": "No application code or manifest changed in this run; coordination records only."
+    },
+    {
+      "stage": "debug",
+      "reason": "No observed functional failure required diagnosis."
+    }
+  ],
+  "verification_results": [
+    {
+      "criterion": "AC-1",
+      "status": "passed",
+      "observed_result": "Dependency validator confirms ten packages, six reusable libraries, versioned local paths, allowed boundaries and no cycles.",
+      "evidence_ref": "checkpoints/commands.md"
+    },
+    {
+      "criterion": "AC-2",
+      "status": "passed",
+      "observed_result": "Pinned gpui-kit 0.9.1, one GPUI 0.3.12 runtime, original vendor source integrity and declared patch verified.",
+      "evidence_ref": "checkpoints/commands.md"
+    },
+    {
+      "criterion": "AC-3",
+      "status": "passed",
+      "observed_result": "Prior explicit light/dark/System selection, named registration, invalid input rejection and token refresh passed. Follow-up observed live macOS Dark to Light to Dark changes automatically refreshing the existing System-mode Showcase window and semantic tokens, without app restart or app theme commands. Original OS Dark setting restored.",
+      "evidence_ref": "checkpoints/native.md"
+    },
+    {
+      "criterion": "AC-4",
+      "status": "passed",
+      "observed_result": "Native SVGs render in gallery and Button; namespaced registry validation covered by passing tests.",
+      "evidence_ref": "checkpoints/native.md"
+    },
+    {
+      "criterion": "AC-5",
+      "status": "passed",
+      "observed_result": "Seven composition previews observed, controlled selection and tabs exercised, split and inspector divider moved natively.",
+      "evidence_ref": "checkpoints/native.md"
+    },
+    {
+      "criterion": "AC-6",
+      "status": "passed",
+      "observed_result": "All seven destination content observed, live Playground and icon controls exercised including OS copy/paste.",
+      "evidence_ref": "checkpoints/native.md"
+    },
+    {
+      "criterion": "AC-7",
+      "status": "passed",
+      "observed_result": "Workspace build compiles all three consumers, 22 test/doctest cases pass, docs build and release checker pass.",
+      "evidence_ref": "checkpoints/commands.md"
+    },
+    {
+      "criterion": "AC-8",
+      "status": "passed",
+      "observed_result": "All required commands passed and cargo run started. Native bundle inspected has identical SHA256 to current debug executable. Platform/accessibility boundaries reported separately.",
+      "evidence_ref": "checkpoints/commands.md"
+    }
+  ],
+  "followups": [
+    {
+      "id": "live-macos-appearance",
+      "requested_by": "User: Verify the live OS appearance changes on macOS and update the foundation verification report.",
+      "executed_at": "2026-11-16T15:15:20.820177+07:00",
+      "execution_placement": "inline",
+      "status": "COMPLETED",
+      "criterion": "AC-3",
+      "result": "passed",
+      "evidence_ref": "checkpoints/native.md#live-macos-appearance-follow-up-2026-11-16",
+      "git_head": "13c021c2f817d64e1a6e7b962e46ce4bfecc33d4",
+      "executable_sha256": "95ed2edae7263286c84c4d5fe80ef11310d251ce27132efc094330319d1dfc73",
+      "restoration": "Original macOS Dark appearance restored; Showcase Overview, System selected; Settings General",
+      "automated_checks": "Not repeated for documentation-only update; prior results retained"
+    }
+  ]
 }
