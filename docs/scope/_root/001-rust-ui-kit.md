@@ -1,4 +1,4 @@
-# Scope: Rust UI Kit
+# Scope 001: Rust UI Kit
 
 Native reusable Rust interfaces for application developers. This scope enrolls the selected navigation slice only.
 

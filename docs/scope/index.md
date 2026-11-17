@@ -1,5 +1,5 @@
 # Scope index
 
-| Workspace | Scope | Status |
-| --- | --- | --- |
-| Repository wide | [Rust UI Kit](./_root/scope.md) | Native navigation in progress |
+| # | Workspace | Scope | Status |
+| --- | --- | --- | --- |
+| 001 | Repository wide | [Rust UI Kit](./_root/001-rust-ui-kit.md) | Native navigation in progress |

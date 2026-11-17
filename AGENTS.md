@@ -15,6 +15,8 @@ GPUI Kit owns standard components and rendering. ui-components re-exports its ca
 ## Rules
 Use the runtime exported by ui_kit::gpui (gpui-kit 0.9.1, GPUI snapshot 0.3.12). Keep internal dependencies as versioned paths. Do not copy upstream components or add another renderer. Retain state entities and subscriptions outside render. Restore shell focus when a focused page control leaves the element tree. Use semantic colors, stable IDs and native controls for commands. Document public APIs. Report native platform and accessibility verification separately from headless tests. No push, publication or release without explicit user authorization.
 
+Number new scopes sequentially from `001`, then `002`, `003`, and onward. Use the number in the scope title and filename (`001-<slug>.md`) under `docs/scope/`. Allocate the next number after the highest existing scope number in the repository and retain assigned numbers when updating scopes.
+
 ## Upstream references
 When adding a component or changing GPUI state ownership, consult the pinned upstream coding guide and actual source. References and release commit are in docs/specs/_root/0001-native-ui-foundation/rationale.md. Do not silently upgrade the runtime.
 
